@@ -45,6 +45,6 @@ public static TalonFX backRightMotor;
 public static TalonFX frontLeftMotor;
 public static TalonFX backLeftMotor;
 public static TalonFX frontRightMotor;
-public static DifferentialDrive leftGroup;
-public static DifferentialDrive rightGroup;
+public static Object leftGroup;
+public static Object rightGroup;
 }
