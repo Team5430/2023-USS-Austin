@@ -24,7 +24,7 @@ SupplyCurrentLimitConfiguration configTalonCurrent = new SupplyCurrentLimitConfi
           ((TalonFX) Constants.backLeftMotor).configSupplyCurrentLimit(configTalonCurrent);
 
 //made negative so they don't run in opposite directions
-      ((WPI_TalonFX) Constants.leftGroup).set(getLeftYaxis(joystickLeft));
+      ((WPI_TalonFX) Constants.leftGroup).set(-getLeftYaxis(joystickLeft));
 
       ((WPI_TalonFX) Constants.rightGroup).set(getRightYaxis(joystickRight));
     }
