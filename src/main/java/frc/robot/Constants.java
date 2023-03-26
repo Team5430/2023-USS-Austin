@@ -41,10 +41,10 @@ public final class Constants {
     public static final int kLeftJoystickPort = 1;
     public static final int kRightJoystickPort = 2;
   }
-public static Object backRightMotor;
-public static Object frontLeftMotor;
-public static Object backLeftMotor;
-public static Object frontRightMotor;
-public static Object leftGroup;
-public static Object rightGroup;
+public static TalonFX backRightMotor;
+public static TalonFX frontLeftMotor;
+public static TalonFX backLeftMotor;
+public static TalonFX frontRightMotor;
+public static DifferentialDrive leftGroup;
+public static DifferentialDrive rightGroup;
 }
