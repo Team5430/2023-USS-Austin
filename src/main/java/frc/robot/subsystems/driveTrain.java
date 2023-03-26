@@ -11,14 +11,13 @@ import frc.robot.Constants;;
 
 public class driveTrain extends SubsystemBase {
     
-    
    
     //Joysticks
     public static Joystick joystickLeft = new Joystick(1);
     public static Joystick joystickRight = new Joystick(2);
 
   public void Drive() {
-        SupplyCurrentLimitConfiguration configTalonCurrent = new SupplyCurrentLimitConfiguration(true,55,0,0);
+SupplyCurrentLimitConfiguration configTalonCurrent = new SupplyCurrentLimitConfiguration(true,55,0,0);
           ((TalonFX) Constants.frontRightMotor).configSupplyCurrentLimit(configTalonCurrent);
           ((TalonFX) Constants.frontLeftMotor).configSupplyCurrentLimit(configTalonCurrent);
           ((TalonFX) Constants.backLeftMotor).configSupplyCurrentLimit(configTalonCurrent);
@@ -29,11 +28,11 @@ public class driveTrain extends SubsystemBase {
 
       ((WPI_TalonFX) Constants.rightGroup).set(getRightYaxis(joystickRight));
     }
-    public double getLeftYaxis(Joystick Port){
-      return Port.getY();
+    public double getLeftYaxis(Joystick joy){
+      return joy.getY();
     }
-    public double getRightYaxis(Joystick Port){
-      return Port.getY();
+    public double getRightYaxis(Joystick joy){
+      return joy.getY();
     }
     
     
