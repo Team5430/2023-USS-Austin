@@ -45,12 +45,8 @@ public final class Constants {
     public static final int kLeftJoystickPort = 1;
     public static final int kRightJoystickPort = 2;
   }
-
-public static TalonFX backRightMotor;
-public static TalonFX frontLeftMotor;
-public static TalonFX backLeftMotor;
-public static TalonFX frontRightMotor;
-public static Object leftGroup;
-public static Object rightGroup;
-
+public static MotorControllerGroup leftGroup;
+public static MotorControllerGroup rightGroup;
+public enum _driveTrain {
+}
 }

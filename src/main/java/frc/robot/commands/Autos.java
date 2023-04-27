@@ -4,17 +4,13 @@
 
 package frc.robot.commands;
 
-import frc.robot.subsystems.RotateSubsystem;
-import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.wpilibj2.command.Commands;
 
 public final class Autos {
   /** Example static factory for an autonomous command. */
-  public static CommandBase exampleAuto(RotateSubsystem subsystem) {
-    return Commands.sequence(subsystem.exampleMethodCommand(), new RotateCommand(subsystem));
-  }
+ 
 
   private Autos() {
     throw new UnsupportedOperationException("This is a utility class!");
+
   }
 }
