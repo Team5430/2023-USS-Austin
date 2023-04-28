@@ -6,9 +6,6 @@ package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Autos;
-import frc.robot.commands.DriveCommand;
-import frc.robot.commands.RotateCommand;
-import frc.robot.subsystems.RotateSubsystem;
 import frc.robot.subsystems.driveTrain;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
@@ -23,7 +20,6 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final RotateSubsystem m_rotateSubsystem = new RotateSubsystem();
   private final driveTrain m_DriveTrain = new driveTrain();
 
   private final CommandJoystick m_JoystickLeft = new CommandJoystick(OperatorConstants.kLeftJoystickPort);
@@ -36,6 +32,8 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the trigger bindings
     configureBindings();
+    
+    
   }
 
   /**
@@ -49,14 +47,10 @@ public class RobotContainer {
    */
   private void configureBindings() {
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
-    new Trigger(m_rotateSubsystem::exampleCondition)
-        .onTrue(new RotateCommand(m_rotateSubsystem));
-    new Trigger(m_DriveTrain::isFinished)
-        .onTrue(new DriveCommand(m_DriveTrain));
 
     // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
     // cancelling on release.
-    m_driverController.b().whileTrue(m_rotateSubsystem.exampleMethodCommand());
+    m_driverController.b().whileTrue(null);
   }
 
   /**
@@ -66,6 +60,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An example command will be run in autonomous
-    return Autos.exampleAuto(m_rotateSubsystem);
+    return Autos.exampleAuto(null);
   }
 }
