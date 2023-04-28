@@ -7,7 +7,9 @@ package frc.robot.commands;
 
 public final class Autos {
   /** Example static factory for an autonomous command. */
- 
+  public static CommandBase exampleAuto(RotateSubsystem subsystem) {
+    return Commands.sequence(subsystem.exampleMethodCommand(), new RotateCommand(subsystem));
+  }
 
   private Autos() {
     throw new UnsupportedOperationException("This is a utility class!");
