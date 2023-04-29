@@ -18,9 +18,7 @@ public class driveTrain extends SubsystemBase  {
       //organizes motor conrollers into groups, left and right respectively
      final MotorControllerGroup leftGroup = new MotorControllerGroup(backLeftMotor, frontLeftMotor);
    final   MotorControllerGroup rightGroup = new MotorControllerGroup(backRightMotor, frontRightMotor);
-      //creates a differential (tank) drive out of the two motor controller groups
-  final DifferentialDrive _driveTrain = new DifferentialDrive(leftGroup, rightGroup);
-//settings
+//Motor settings
 public void driveSettings(){
       SupplyCurrentLimitConfiguration configTalonCurrent = new SupplyCurrentLimitConfiguration(true,55,0,0);
           frontRightMotor.configSupplyCurrentLimit(configTalonCurrent);
@@ -39,7 +37,7 @@ public void driveSettings(){
     Joystick joystickRight = new Joystick(2);
 
     public double leftPower(){
-      return joystickLeft.getY();
+      return joystickLeft.getY() ;
     } 
     public double rightPower(){
       return joystickRight.getY();
