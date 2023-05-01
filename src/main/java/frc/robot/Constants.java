@@ -16,12 +16,19 @@ import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-  public static class CANid{
+ 
+public static double multiplier = 0;
 
+  public static class CANid{
     public static final int kRotateSRX = 6;
     public static final int kGripperSRX = 7;
     public static final int kExtendSRX = 8;
     public static final int kSpareSRX = 9;
+    //drivetrain
+    public static final int kBackRightFX = 1;
+    public static final int kBackLeftFX = 2;
+    public static final int kFrontRightFX = 3;
+    public static final int kFrontLeftFX = 4;
 
   }
   public static class OperatorConstants {
@@ -29,6 +36,7 @@ public final class Constants {
       
     public static final int kLeftJoystickPort = 1;
     public static final int kRightJoystickPort = 2;
+
   }
 
 }
