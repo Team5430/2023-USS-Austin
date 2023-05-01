@@ -5,7 +5,7 @@
 package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
-import frc.robot.commands.Autos;
+import frc.robot.subsystems.armSub;
 import frc.robot.subsystems.driveTrain;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
@@ -21,16 +21,20 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final driveTrain m_DriveTrain = new driveTrain();
+  private final armSub m_armSub = new armSub();
 
-  private final CommandJoystick m_JoystickLeft = new CommandJoystick(OperatorConstants.kLeftJoystickPort);
-  private final CommandJoystick m_JoystickRight = new CommandJoystick(OperatorConstants.kRightJoystickPort);
-  // Replace with CommandPS4Controller or CommandJoystick if needed
-  
+//Joysticks for driver
+public final static CommandJoystick m_JoystickLeft = new CommandJoystick(OperatorConstants.kLeftJoystickPort);
+public final static CommandJoystick m_JoystickRight = new CommandJoystick(OperatorConstants.kRightJoystickPort);
+// co-pilot controller
+public final static CommandJoystick m_Controller0 = new CommandJoystick(OperatorConstants.kCoPilotPort);
+ 
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the trigger bindings
     configureBindings();
+    driveTrain.driveSettings();
     m_DriveTrain.setDefaultCommand(
       new RunCommand(() -> m_DriveTrain.Drive(m_JoystickLeft.getY() * 0.5, m_JoystickRight.getY() * 0.5),m_DriveTrain));
   }
@@ -44,17 +48,14 @@ public class RobotContainer {
    * PS4} controllers or {@link edu.wpi.first.wpilibj2.command.button.CommandJoystick Flight
    * joysticks}.
    */
-  private void configureBindings() {
-    // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
+  private void configureBindings(){
 
-    // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
-    // cancelling on release.
+    Trigger aButton = m_Controller0.button(3);
+    
+    m_Controller0.button(3).onTrue(null);
+
   }
 
-  /**
-   * Use this to pass the autonomous command to the main {@link Robot} class.
-   *
-   * @return the command to run in autonomous
-   */
-  
 }
+  
+ 
