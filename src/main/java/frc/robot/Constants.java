@@ -16,24 +16,13 @@ import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-
   public static class CANid{
 
-    public static WPI_TalonFX backRightMotor = new WPI_TalonFX(2);
-    public static WPI_TalonFX backLeftMotor = new WPI_TalonFX(3);
-    public static WPI_TalonFX frontRightMotor = new WPI_TalonFX(4);
-    public static WPI_TalonFX frontLeftMotor = new WPI_TalonFX(5);
-
-    //organizes motor conrollers into groups, left and right respectively
-    static MotorControllerGroup leftGroup = new MotorControllerGroup(backLeftMotor, frontLeftMotor);
-    static MotorControllerGroup rightGroup = new MotorControllerGroup(backRightMotor, frontRightMotor);
-
-    //creates a differential (tank) drive out of the two motor controller groups
-    public static DifferentialDrive driveTrain = new DifferentialDrive(leftGroup, rightGroup);
     public static final int kRotateSRX = 6;
     public static final int kGripperSRX = 7;
     public static final int kExtendSRX = 8;
     public static final int kSpareSRX = 9;
+
   }
 
   public static class OperatorConstants {
@@ -41,6 +30,7 @@ public final class Constants {
       
     public static final int kLeftJoystickPort = 1;
     public static final int kRightJoystickPort = 2;
+
   }
 public static TalonFX backRightMotor;
 public static TalonFX frontLeftMotor;
