@@ -7,6 +7,7 @@ package frc.robot;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.subsystems.armSub;
 import frc.robot.subsystems.driveTrain;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
@@ -50,9 +51,13 @@ public final static CommandJoystick m_Controller0 = new CommandJoystick(Operator
    */
   private void configureBindings(){
 
-    Trigger aButton = m_Controller0.button(3);
+    Trigger joyButtonLeft = m_JoystickLeft.button(3);
+    Trigger joyButtonRight = m_JoystickRight.button(3);
     
-    m_Controller0.button(3).onTrue(null);
+
+    joyButtonLeft.onTrue(new InstantCommand(m_DriveTrain:: VariableSpeedIncrease, m_DriveTrain));
+    joyButtonRight.onTrue(new InstantCommand(m_DriveTrain:: VariableSpeedDecrease, m_DriveTrain));
+
 
   }
 
