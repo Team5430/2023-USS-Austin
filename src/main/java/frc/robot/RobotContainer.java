@@ -37,7 +37,7 @@ public final static CommandJoystick m_Controller0 = new CommandJoystick(Operator
     configureBindings();
     driveTrain.driveSettings();
     m_DriveTrain.setDefaultCommand(
-      new RunCommand(() -> m_DriveTrain.Drive(m_JoystickLeft.getY() * 0.5, m_JoystickRight.getY() * 0.5),m_DriveTrain));
+      new RunCommand(() -> m_DriveTrain.Drive(m_JoystickLeft.getY(), m_JoystickRight.getY()),m_DriveTrain));
   }
 
   /**
@@ -53,7 +53,7 @@ public final static CommandJoystick m_Controller0 = new CommandJoystick(Operator
 
     Trigger joyButtonLeft = m_JoystickLeft.button(3);
     Trigger joyButtonRight = m_JoystickRight.button(3);
-    
+
 
     joyButtonLeft.onTrue(new InstantCommand(m_DriveTrain:: VariableSpeedIncrease, m_DriveTrain));
     joyButtonRight.onTrue(new InstantCommand(m_DriveTrain:: VariableSpeedDecrease, m_DriveTrain));
