@@ -28,7 +28,7 @@ public static void driveSettings(){
 //drive with input     
     public void Drive(double left, double right){
       leftGroup.set(left * Constants.multiplier);
-      rightGroup.set(right * Constants.multiplier);
+      rightGroup.set(-right * Constants.multiplier);
   }
   //VariableSpeed
     public void VariableSpeedIncrease(){
