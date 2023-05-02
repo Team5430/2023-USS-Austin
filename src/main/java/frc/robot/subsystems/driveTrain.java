@@ -32,10 +32,10 @@ public static void driveSettings(){
   }
   //VariableSpeed
     public void VariableSpeedIncrease(){
-      Constants.multiplier = +.1;
+      Constants.multiplier +=.1;
     }
     public void VariableSpeedDecrease(){
-      Constants.multiplier = -.1;
+      Constants.multiplier -=.1;
     }
   //if you want add anything, make other functions to use                                                                                                                                  
 
