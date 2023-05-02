@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -31,11 +32,13 @@ public final static CommandJoystick m_JoystickRight = new CommandJoystick(Operat
 public final static CommandJoystick m_Controller0 = new CommandJoystick(OperatorConstants.kCoPilotPort);
  
 
+
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the trigger bindings
     configureBindings();
     driveTrain.driveSettings();
+    ShuffleboardUpdate();
     m_DriveTrain.setDefaultCommand(
       new RunCommand(() -> m_DriveTrain.Drive(m_JoystickLeft.getY(), m_JoystickRight.getY()),m_DriveTrain));
   }
@@ -59,6 +62,9 @@ public final static CommandJoystick m_Controller0 = new CommandJoystick(Operator
     joyButtonRight.onTrue(new InstantCommand(m_DriveTrain:: VariableSpeedDecrease, m_DriveTrain));
 
 
+  }
+  private void ShuffleboardUpdate(){
+    SmartDashboard.putNumber("Multiplier", Constants.multiplier);
   }
 
 }
