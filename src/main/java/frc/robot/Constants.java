@@ -25,10 +25,10 @@ public static double multiplier = 0;
     public static final int kExtendSRX = 8;
     public static final int kSpareSRX = 9;
     //drivetrain
-    public static final int kBackRightFX = 1;
-    public static final int kBackLeftFX = 2;
-    public static final int kFrontRightFX = 3;
-    public static final int kFrontLeftFX = 4;
+    public static final int kBackRightFX = 2;
+    public static final int kBackLeftFX = 3;
+    public static final int kFrontRightFX = 4;
+    public static final int kFrontLeftFX = 5;
 
   }
   public static class OperatorConstants {
