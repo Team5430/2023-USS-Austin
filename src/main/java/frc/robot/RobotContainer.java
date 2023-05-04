@@ -38,7 +38,6 @@ public final static CommandJoystick m_Controller0 = new CommandJoystick(Operator
     // Configure the trigger bindings
     configureBindings();
     driveTrain.driveSettings();
-    ShuffleboardUpdate();
     m_DriveTrain.setDefaultCommand(
       new RunCommand(() -> m_DriveTrain.Drive(m_JoystickLeft.getY(), m_JoystickRight.getY()),m_DriveTrain));
   }
@@ -63,9 +62,7 @@ public final static CommandJoystick m_Controller0 = new CommandJoystick(Operator
 
 
   }
-  private void ShuffleboardUpdate(){
-    SmartDashboard.putNumber("Multiplier", Constants.multiplier);
-  }
+  
 
 }
   
