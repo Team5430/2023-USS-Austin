@@ -14,6 +14,9 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
+ 
+public static double multiplier = 0;
+
   public static class CANid{
 
     public static final int kRotateSRX = 6;

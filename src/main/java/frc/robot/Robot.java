@@ -8,6 +8,9 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.subsystems.driveTrain;
+
+
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -19,7 +22,8 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
   private RobotContainer m_robotContainer;
-
+  
+  // Creates a new AHRS object under ahrs.
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -29,6 +33,8 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
+
+ 
   }
 
   /**
@@ -45,9 +51,22 @@ public class Robot extends TimedRobot {
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
-    SmartDashboard.putNumber("Multiplier", Constants.multiplier);
-  
+    SmartDashboard.putNumber("Multiplier", Constants.multiplier); 
+
+       //SmartDashboard data with the raw number of roll
+        SmartDashboard.putNumber("Angle", driveTrain.getGyroAngle());
+    SmartDashboard.putNumber("Y Axis", driveTrain.getY());
+    SmartDashboard.putNumber("X Axis", driveTrain.getX()  );
+    SmartDashboard.putNumber("Z Axis", driveTrain.getGyroYaw());
+  //SmartDashboard 
+    SmartDashboard.putNumber("X Accel", driveTrain.getAccelX());
+    SmartDashboard.putNumber("Y Accel", driveTrain.getAccelY());
+    SmartDashboard.putNumber("Z Accel", driveTrain.getAccelz());
+    SmartDashboard.putNumber("Roll Compass", driveTrain.getGyroroll());
+    SmartDashboard.putNumber("Rotation", driveTrain.getGyroYaw());
   }
+
+
 
   /** This function is called once each time the robot enters Disabled mode. */
   @Override
@@ -63,6 +82,7 @@ public class Robot extends TimedRobot {
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
+      
     }
   }
 
@@ -79,6 +99,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+
   }
 
   /** This function is called periodically during operator control. */
