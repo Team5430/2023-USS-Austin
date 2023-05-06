@@ -16,6 +16,10 @@ package frc.robot;
 public final class Constants {
  
 public static double multiplier = 0;
+public static double x = 0;
+public static double y = 0;
+public static double z = 0;
+public static double degrees = 0; 
 
   public static class CANid{
     public static final int kRotateSRX = 6;
