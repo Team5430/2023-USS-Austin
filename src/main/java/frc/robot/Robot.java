@@ -51,22 +51,9 @@ public class Robot extends TimedRobot {
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
-    SmartDashboard.putNumber("Multiplier", Constants.multiplier); 
-
-       //SmartDashboard data with the raw number of roll
-        SmartDashboard.putNumber("Angle", driveTrain.getGyroAngle());
-    SmartDashboard.putNumber("Y Axis", driveTrain.getY());
-    SmartDashboard.putNumber("X Axis", driveTrain.getX()  );
-    SmartDashboard.putNumber("Z Axis", driveTrain.getGyroYaw());
-  //SmartDashboard 
-    SmartDashboard.putNumber("X Accel", driveTrain.getAccelX());
-    SmartDashboard.putNumber("Y Accel", driveTrain.getAccelY());
-    SmartDashboard.putNumber("Z Accel", driveTrain.getAccelz());
-    SmartDashboard.putNumber("Roll Compass", driveTrain.getGyroroll());
-    SmartDashboard.putNumber("Rotation", driveTrain.getGyroYaw());
-  }
 
 
+  } 
 
   /** This function is called once each time the robot enters Disabled mode. */
   @Override
