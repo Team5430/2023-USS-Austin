@@ -6,11 +6,6 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 
 /**
-
- * A simple command that grabs a hatch with the {@link armSub}. {@link
-
- * edu.wpi.first.wpilibj2.command.InstantCommand}.
-
  */
 
 public class armControl extends CommandBase {
