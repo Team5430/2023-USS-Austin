@@ -1,8 +1,6 @@
 package frc.robot.subsystems;
 
-import javax.swing.text.TabSet;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.kauailabs.navx.frc.AHRS;
@@ -49,10 +47,10 @@ public static void driveSettings(){
     }
   //VariableSpeed
     public void VariableSpeedIncrease(){
-      Constants.multiplier +=.1;
+      Constants.multiplier += .1;
     }
     public void VariableSpeedDecrease(){
-      Constants.multiplier -=.1;
+      Constants.multiplier -= .1;
     }
     //Drive in distance
     public void driveInDistance(double distance, double power){
@@ -92,24 +90,28 @@ public static void driveSettings(){
     }
 
     public static double getAccelY(){
-    return ahrs.getWorldLinearAccelY();
+      return ahrs.getWorldLinearAccelY();
     }
 
     public static double getAccelz(){
       return ahrs.getWorldLinearAccelZ();
     }
+
     public static double getX(){
       return ahrs.getRawGyroX();
     }
+
     public static double getY(){
       return ahrs.getRawGyroY();
     }
 
     @Override
     public void periodic() {
-
+      
      Constants.encoderPos = (backLeftMotor.getSelectedSensorPosition() / 2048) * 360;
       double encoderVel = (backLeftMotor.getSelectedSensorVelocity() / 2048) * 360 * 10;
+      Constants.error = Constants.wanted - Constants.encoderPos;
+
 
       SmartDashboard.putNumber("Multiplier", Constants.multiplier); 
       SmartDashboard.putNumber("Velocity", encoderVel);
