@@ -25,16 +25,10 @@ configSRX.peakCurrentDuration = 1300; //Amount of time it allows for the Talon's
 
 }
 
- 
- 
     public void rotating(double axis){
         rotateSRX.set(ControlMode.PercentOutput, axis);
     }
 
-        public CommandBase extendArm(){
-            return this.runOnce(null);
-
-        }
     public void extending(double axis){
         extendSRX.set(ControlMode.PercentOutput, axis);
     }

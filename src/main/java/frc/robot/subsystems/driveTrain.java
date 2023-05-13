@@ -10,10 +10,12 @@ import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 
 public class driveTrain extends SubsystemBase  {
 
-   final static  WPI_TalonFX backRightMotor = new WPI_TalonFX(Constants.CANid.kBackRightFX);
+   final static  WPI_TalonFX backRightMotor = new WPI_TalonFX(Constants.CANid.kBackRightFX);//
    final static  WPI_TalonFX backLeftMotor = new WPI_TalonFX(Constants.CANid.kBackLeftFX);
    final static  WPI_TalonFX frontRightMotor = new WPI_TalonFX(Constants.CANid.kFrontRightFX);
    final static  WPI_TalonFX frontLeftMotor = new WPI_TalonFX(Constants.CANid.kBackLeftFX);
@@ -56,7 +58,7 @@ public static void driveSettings(){
     public void driveInDistance(double distance, double power){
         Constants.previousEncoderPos = Constants.encoderPos;
       while ((( Constants.encoderPos - Constants.previousEncoderPos) * 360 * Constants.wheelCircumference) / 12 < distance){
-        AutoDrive(power, power);
+        AutoDrive(power, -power);
         }
       }
   
@@ -69,19 +71,19 @@ public static void driveSettings(){
        ahrs.zeroYaw();
    }  
    
-     public static double getGyroAngle(){
+     public static double getGyroAngle(){//acquire the angle for the Gyro
       return ahrs.getAngle();
     }
     
-    public static double getGyroPitch(){
+    public static double getGyroPitch(){//get the pitch for the Gyro
       return ahrs.getPitch();
     }
 
-    public static double getGyroYaw(){
+    public static double getGyroYaw(){//Get the value for the Yah in the Gyro
       return ahrs.getYaw();
     }
 
-    public static double getGyroroll(){
+    public static double getGyroroll(){//
       return ahrs.getRoll();
     }
 
@@ -97,33 +99,44 @@ public static void driveSettings(){
       return ahrs.getWorldLinearAccelZ();
     }
 
-    public static double getX(){
-      return ahrs.getRawGyroX();
-    }
-
-    public static double getY(){
-      return ahrs.getRawGyroY();
-    }
-
     @Override
     public void periodic() {
-      
+
      Constants.encoderPos = (backLeftMotor.getSelectedSensorPosition() / 2048) * 360;
       double encoderVel = (backLeftMotor.getSelectedSensorVelocity() / 2048) * 360 * 10;
       Constants.error = Constants.wanted - Constants.encoderPos;
 
 
+  // JL: This deploys data to the SmartDashboard directly, but can't do much more than that.
       SmartDashboard.putNumber("Multiplier", Constants.multiplier); 
       SmartDashboard.putNumber("Velocity", encoderVel);
       SmartDashboard.putNumber("Degrees", encoderVel);
       SmartDashboard.putNumber("Angle", driveTrain.getGyroAngle());
-      SmartDashboard.putNumber("Y Axis", driveTrain.getY());
-      SmartDashboard.putNumber("X Axis", driveTrain.getX()  );
       SmartDashboard.putNumber("Z Axis", driveTrain.getGyroYaw());
       SmartDashboard.putNumber("X Accel", driveTrain.getAccelX());
       SmartDashboard.putNumber("Y Accel", driveTrain.getAccelY());
       SmartDashboard.putNumber("Z Accel", driveTrain.getAccelz());
       SmartDashboard.putNumber("Pitch",  driveTrain.getGyroPitch());
+
+/*     
+
+    Shuffleboard.getTab("SmartDashboard")
+      .add("Angle", driveTrain.getGyroAngle()).withWidget(BuiltInWidgets.kGyro);
+
+    Shuffleboard.getTab("SmartDashboard")
+      .add("Yaw", driveTrain.getGyroYaw()).withWidget(BuiltInWidgets.kGyro);
+
+    Shuffleboard.getTab("SmartDashboard")
+      .add("Pitch", driveTrain.getGyroPitch()).withWidget(BuiltInWidgets.kGyro);
+
+    Shuffleboard.getTab("SmartDashboard")
+      .add();
+    
+    Shuffleboard.getTab("SmartDashboard")
+      .add("Roll", driveTrain.getGyroroll()).withWidget(BuiltInWidgets.kField);
+    
+*/
+
     }
     
   //if you want to add anything, make other functions to use                                                                                                                                  
