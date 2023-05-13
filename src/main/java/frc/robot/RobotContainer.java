@@ -39,6 +39,9 @@ public final static CommandJoystick m_Controller0 = new CommandJoystick(Operator
     driveTrain.driveSettings();
     m_DriveTrain.setDefaultCommand(
       new RunCommand(() -> m_DriveTrain.Drive(m_JoystickLeft.getY(), m_JoystickRight.getY()),m_DriveTrain));
+    m_armSub.setDefaultCommand(
+      new RunCommand(() -> m_armSub.rotating(m_Controller0.getRawAxis(0)), m_armSub));   
+    
   }
 
   /**
