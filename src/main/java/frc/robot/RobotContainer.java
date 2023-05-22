@@ -37,10 +37,18 @@ public final static CommandJoystick m_Controller0 = new CommandJoystick(Operator
     // Configure the trigger bindings
     configureBindings();
     driveTrain.driveSettings();
+    //drive
     m_DriveTrain.setDefaultCommand(
       new RunCommand(() -> m_DriveTrain.Drive(m_JoystickLeft.getY(), m_JoystickRight.getY()),m_DriveTrain));
+      //rotate arm
     m_armSub.setDefaultCommand(
-      new RunCommand(() -> m_armSub.rotating(m_Controller0.getRawAxis(0)), m_armSub));   
+      new RunCommand(() -> m_armSub.rotating(m_Controller0.getRawAxis(0)), m_armSub)); 
+      //extend arm
+    m_armSub.setDefaultCommand(
+      new RunCommand(() -> m_armSub.extending(m_Controller0.getRawAxis(5)), m_armSub)); 
+    m_armSub.setDefaultCommand(
+      new RunCommand(() -> m_armSub.gripping(m_Controller0.getRawAxis(2) - m_Controller0.getRawAxis(3)))
+    ); 
     
   }
 
