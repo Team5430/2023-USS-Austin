@@ -46,6 +46,7 @@ public final static CommandJoystick m_Controller0 = new CommandJoystick(Operator
       //extend arm
     m_armSub.setDefaultCommand(
       new RunCommand(() -> m_armSub.extending(m_Controller0.getRawAxis(5)), m_armSub)); 
+      //gripper gripping
     m_armSub.setDefaultCommand(
       new RunCommand(() -> m_armSub.gripping(m_Controller0.getRawAxis(2) - m_Controller0.getRawAxis(3)))
     ); 

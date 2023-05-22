@@ -1,12 +1,14 @@
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-
+import com.ctre.phoenix.motorcontrol.can.TalonSRXConfiguration;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class armSub extends SubsystemBase{
     private TalonSRX extendSRX = new TalonSRX(Constants.CANid.kExtendSRX);
+    private TalonSRX rotateSRX = new TalonSRX(Constants.CANid.kRotateSRX);
     private TalonSRX gripperSRX = new TalonSRX(Constants.CANid.kGripperSRX);
     TalonSRXConfiguration configSRX = new TalonSRXConfiguration();
 
@@ -17,6 +19,7 @@ configSRX.peakCurrentDuration = 1300; //Amount of time it allows for the Talon's
     //sets settings to the Talons
     rotateSRX.configAllSettings(configSRX);
     extendSRX.configAllSettings(configSRX);
+    gripperSRX.configAllSettings(configSRX);
 
 }
 
