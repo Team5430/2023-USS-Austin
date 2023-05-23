@@ -28,7 +28,7 @@ public class GripCommand extends CommandBase {
           break;
       }
       switch (isGripping){
-        case true:
+        case true: // 
           while(s_timer.get() < 1){
             gripperSRX.set(ControlMode.PercentOutput, motorStrength);
             }
