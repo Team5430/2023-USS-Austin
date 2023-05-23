@@ -31,7 +31,6 @@ public final static CommandJoystick m_JoystickRight = new CommandJoystick(Operat
 public final static CommandJoystick m_Controller0 = new CommandJoystick(OperatorConstants.kCoPilotPort);
  
 
-
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the trigger bindings
