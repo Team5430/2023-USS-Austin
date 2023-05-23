@@ -1,11 +1,16 @@
 This repository contains the command-based code we (Team 5430 Pirate Robolution) have been working on. 
 To download the code, download as a zip or open with GitHub Desktop.
 
-Authors:
-jiolinsangan@gmail.com (Jio A. Linsangan)
-erueda0618@gmail.com (Ethan R. Rueda)
-rmon.led@gmail.com (Ramon Ledesma)
-riomaneclang@gmail.com (Rio Maneclang)
+Authors: <br />  
+
+jiolinsangan@gmail.com (Jio A. Linsangan) <br />
+
+erueda0618@gmail.com (Ethan R. Rueda) <br />  
+
+rmon.led@gmail.com (Ramon Ledesma) <br />  
+
+riomaneclang@gmail.com (Rio Maneclang) <br />  
+
 [unfinished]
 
 "java/frc/robot" holds the actual java files.
