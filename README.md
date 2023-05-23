@@ -9,6 +9,7 @@ riomaneclang@gmail.com (Rio Maneclang)
 [unfinished]
 
 "java/frc/robot" holds the actual java files.
+To access this directory, head over to "src/main"
 
 - Constants -
 Holds numbers and values which are not changed and stay constant that are used for code, such as motor ports, joysticks, and numbers used for calculations.
