@@ -27,20 +27,20 @@ public class GripCommand extends CommandBase {
           motorStrength = Constants.gripperStrengthCube; // if stated improperly, defaults to strength for cube
           break;
       }
-      switch (isGripping){
-        case true: // 
-          while(s_timer.get() < 1){
-            gripperSRX.set(ControlMode.PercentOutput, motorStrength);
+      switch (isGripping){ // then checks if you want to grip or not
+        case true: // if you want to grip:
+          while(s_timer.get() < 1){ // to edit for encoder stuff
+            gripperSRX.set(ControlMode.PercentOutput, motorStrength); //increases gripper output by local strength until a second passes
             }
             gripperSRX.set(ControlMode.PercentOutput, 0);
-        case false:
-          while(s_timer.get() < 1){
-            gripperSRX.set(ControlMode.PercentOutput, -motorStrength);
+        case false: // if you want to let go of a peice:
+          while(s_timer.get() < 1){ // to edit for encoder stuff
+            gripperSRX.set(ControlMode.PercentOutput, -motorStrength); //decreases gripper output by local strength until a second passes
             }
             gripperSRX.set(ControlMode.PercentOutput, 0);
-        default:
-          while(s_timer.get() < 1){
-            gripperSRX.set(ControlMode.PercentOutput, -motorStrength);
+        default:// lets go by default
+          while(s_timer.get() < 1){ // to edit for encoder stuff
+            gripperSRX.set(ControlMode.PercentOutput, -motorStrength); //increases gripper output by local strength until a second passes
             }
             gripperSRX.set(ControlMode.PercentOutput, 0);
      }
