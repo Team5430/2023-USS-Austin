@@ -25,21 +25,22 @@ configSRX.peakCurrentDuration = 1300; //Amount of time it allows for the Talon's
     gripperSRX.configAllSettings(configSRX);
 
 }
-
+//method for rotating arm using CoPilot
     public void rotating(double axis){
         rotateSRX.set(ControlMode.PercentOutput, axis);
     }
-
+//method for extending arm using CoPilot
     public void extending(double axis){
         extendSRX.set(ControlMode.PercentOutput, axis);
     }
-
+//Allows extending method to be run during the whole match
     {new RunCommand(() -> extending(RobotContainer.m_Controller0.getRawAxis(5)));}
 
+//method for arm gripping using CoPilot
     public void gripping(double axis){
         gripperSRX.set(ControlMode.PercentOutput, axis * .35);
     }
-
+//Allows gripping method to be run during the whole match
     {new RunCommand(() -> rotating(RobotContainer.m_Controller0.getRawAxis(2) - RobotContainer.m_Controller0.getRawAxis(3)));}
         
      
