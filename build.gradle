@@ -102,7 +102,7 @@ tasks.withType(JavaCompile) {
 publishing {
     repositories {
         maven {
-            name = "5430 USS Austin"
+            name = "5430_USS_Austin"
             url = uri("https://maven.pkg.github.com/OWNER/REPOSITORY")
             credentials {
                 username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
