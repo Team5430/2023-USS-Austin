@@ -112,8 +112,8 @@ publishing {
             name = "5430_USS_Austin"
             url = uri("https://maven.pkg.github.com/Team5430/Command-Based-Startoff")
             credentials {
-                username = System.getenv("USERNAME")
-                password = System.getenv("TOKEN")
+                username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
+                password = project.findProperty("gpr.key") ?: System.getenv("GITHUB_TOKEN")
             } 
         }
     }
