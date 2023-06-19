@@ -1,7 +1,7 @@
 plugins {
     id "java"
     id "edu.wpi.first.GradleRIO" version "2023.4.3"
-    id ("maven-publish")
+    id("maven-publish")
 }
 
 sourceCompatibility = JavaVersion.VERSION_11
@@ -120,8 +120,6 @@ publishing {
     publications {
         gpr(MavenPublication) {
             from(components.java)
-            credentials.username = System.getenv("led-esma")
-            credentials.password = System.getenv("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")
         }
     }
 }
