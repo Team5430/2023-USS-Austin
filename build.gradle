@@ -98,12 +98,7 @@ wpi.java.configureTestTasks(test)
 tasks.withType(JavaCompile) {
     options.compilerArgs.add '-XDstringConcat=inline'
 }
-group='Team5430'
- subprojects {
- apply plugin: 'java'
- apply plugin: "edu.wpi.first.GradleRIO" version "2023.4.3"
-                  group='Team5430'
-}
+
 
 //publish config for github packages
 publishing {
@@ -112,8 +107,8 @@ publishing {
             name = "5430_USS_Austin"
             url = uri("https://maven.pkg.github.com/Team5430/Command-Based-Startoff")
             credentials {
-                username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
-                password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
+                username =  System.getenv("USERNAME")
+                password =  System.getenv("TOKEN")
             } 
         }
     }
