@@ -111,10 +111,10 @@ publishing {
         maven {
             name = "5430_uss_austin"
             url = uri("https://maven.pkg.github.com/team5430/command-based-startoff")
-            credentials {
-                username = project.findProperty("gpr.user") ?: System.getenv("led-esma")
-                password = project.findProperty("gpr.key") ?: System.getenv("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")
-            } 
+            
+                credentials.username = project.findProperty("gpr.user") ?: System.getenv("led-esma")
+                credentials.password = project.findProperty("gpr.key") ?: System.getenv("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")
+            
         }
     }
     publications {
