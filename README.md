@@ -1,4 +1,4 @@
-[![Gradle](https://github.com/Team5430/Command-Based-Startoff/actions/workflows/Build.yml/badge.svg?branch=master)](https://github.com/Team5430/Command-Based-Startioff/actions/workflows/Build.yml)
+[![Gradle](https://github.com/Team5430/Command-Based-Startoff/actions/workflows/Build.yml/badge.svg?branch=master)](https://github.com/Team5430/Command-Based-Startoff/actions/workflows/Build.yml)
 <br />
 This repository contains the command-based code we (Team 5430 Pirate Robolution) have been working on. 
 To download the code, download as a zip or open with GitHub Desktop.
