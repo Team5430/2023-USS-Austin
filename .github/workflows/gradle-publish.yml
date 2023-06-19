@@ -41,5 +41,5 @@ jobs:
       with:
         arguments: publish
       env:
-        USERNAME: username 
-        TOKEN: password
+        USERNAME: credentialsusername 
+        TOKEN: credentials.password
