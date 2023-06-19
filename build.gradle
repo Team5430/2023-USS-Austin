@@ -1,7 +1,7 @@
 plugins {
     id "java"
     id "edu.wpi.first.GradleRIO" version "2023.4.3"
-    id("maven-publish")
+    id ("maven-publish")
 }
 
 sourceCompatibility = JavaVersion.VERSION_11
@@ -98,7 +98,12 @@ wpi.java.configureTestTasks(test)
 tasks.withType(JavaCompile) {
     options.compilerArgs.add '-XDstringConcat=inline'
 }
-
+group='Team5430'
+ subprojects {
+ apply plugin: 'java'
+ apply plugin: "edu.wpi.first.GradleRIO" version "2023.4.3"
+                  group='Team5430'
+}
 
 //publish config for github packages
 publishing {
@@ -106,15 +111,17 @@ publishing {
         maven {
             name = "5430_uss_austin"
             url = uri("https://maven.pkg.github.com/team5430/command-based-startoff")
-            
-                credentials.username = project.findProperty("gpr.user") ?: System.getenv("led-esma")
-                credentials.password = project.findProperty("gpr.key") ?: System.getenv("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")
-            
+            credentials {
+                username = project.findProperty("gpr.user") ?: System.getenv("led-esma")
+                password = project.findProperty("gpr.key") ?: System.getenv("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")
+            } 
         }
     }
     publications {
         gpr(MavenPublication) {
             from(components.java)
+            credentials.username = System.getenv("led-esma")
+            credentials.password = System.getenv("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")
         }
     }
 }
