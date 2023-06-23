@@ -4,12 +4,14 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.TalonSRXConfiguration;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class rotationSub extends SubsystemBase{
     private static TalonSRX rotateSRX = new TalonSRX(Constants.CANid.kRotateSRX);
     static TalonSRXConfiguration R_configSRX = new TalonSRXConfiguration();
+    Timer rTimer = new Timer();
 
 public static void RotaterSRXsettings(){
     //SRX Settings
@@ -22,4 +24,12 @@ public static void RotaterSRXsettings(){
     public void rotating(double axis){
         rotateSRX.set(ControlMode.PercentOutput, axis);
     }    
+    public void rotateinTime(double time, double power){
+
+        if(rTimer.get() < time){
+            rotateSRX.set(ControlMode.PercentOutput, power);}
+            else
+        {rTimer.reset();
+            rTimer.stop();}
+    }
 }
