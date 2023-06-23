@@ -1,15 +1,19 @@
 package frc.robot.subsystems;
 
+
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.TalonSRXConfiguration;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class gripperSub extends SubsystemBase{
+
     private static TalonSRX gripperSRX = new TalonSRX(Constants.CANid.kGripperSRX);
     static TalonSRXConfiguration G_configSRX = new TalonSRXConfiguration();
+    Timer gTimer = new Timer();
 
     public static void GripperSRXsettings(){
     //SRX Settings
@@ -21,6 +25,16 @@ public class gripperSub extends SubsystemBase{
     //move arm
     public void gripping(double axis){
         gripperSRX.set(ControlMode.PercentOutput, axis * .35);
+    }
+
+    public void gripinTime(double time, double power){
+        
+        if(gTimer.get() < time){
+            gripperSRX.set(ControlMode.PercentOutput, power);}
+        else 
+    {gTimer.reset();
+        gTimer.stop();}
+
     }
 
 }
