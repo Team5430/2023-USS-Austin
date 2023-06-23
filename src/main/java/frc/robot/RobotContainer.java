@@ -5,8 +5,10 @@
 package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
-import frc.robot.subsystems.armSub;
+import frc.robot.subsystems.rotationSub;
 import frc.robot.subsystems.driveTrain;
+import frc.robot.subsystems.extendSub;
+import frc.robot.subsystems.gripperSub;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
@@ -22,7 +24,9 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final driveTrain m_DriveTrain = new driveTrain();
-  private final armSub m_armSub = new armSub();
+  private final rotationSub m_armSub = new rotationSub();
+  private final gripperSub m_gripperSub = new gripperSub();
+  private final extendSub m_extendSub = new extendSub();
 
 //Joysticks for driver
 public final static CommandJoystick m_JoystickLeft = new CommandJoystick(OperatorConstants.kLeftJoystickPort);
@@ -35,14 +39,19 @@ public final static CommandJoystick m_Controller0 = new CommandJoystick(Operator
   public RobotContainer() {
     // Configure the trigger bindings
     configureBindings();
-    driveTrain.driveSettings();
-    //drive
+
+      //drive
     m_DriveTrain.setDefaultCommand(
       new RunCommand(() -> m_DriveTrain.Drive(m_JoystickLeft.getY(), m_JoystickRight.getY()),m_DriveTrain));
       //rotate arm
     m_armSub.setDefaultCommand(
-      new RunCommand(() -> m_armSub.rotating(m_Controller0.getRawAxis(0)), m_armSub)); 
-
+      new RunCommand(() -> m_armSub.rotating(m_Controller0.getRawAxis(0)), m_armSub));
+      //gripper control
+    m_gripperSub.setDefaultCommand(
+      new RunCommand(() -> m_gripperSub.gripping(RobotContainer.m_Controller0.getRawAxis(2) - RobotContainer.m_Controller0.getRawAxis(3))));
+      //extending control
+    m_extendSub.setDefaultCommand(
+      new RunCommand(() -> m_extendSub.extending(RobotContainer.m_Controller0.getRawAxis(5))));
   }
 
   /**
@@ -55,7 +64,7 @@ public final static CommandJoystick m_Controller0 = new CommandJoystick(Operator
    * joysticks}.
    */
   private void configureBindings(){
-
+//Co-Pilot controls
     Trigger joyButtonLeft = m_JoystickLeft.button(3);
     Trigger joyButtonRight = m_JoystickRight.button(3);
     Trigger calibButton = m_Controller0.button(2);

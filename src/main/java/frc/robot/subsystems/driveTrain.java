@@ -5,7 +5,6 @@ import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SerialPort.Port;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -22,21 +21,22 @@ public class driveTrain extends SubsystemBase  {
       //organizes motor conrollers into groups, left and right respectively
     final MotorControllerGroup leftGroup = new MotorControllerGroup(backLeftMotor, frontLeftMotor);
     final MotorControllerGroup rightGroup = new MotorControllerGroup(backRightMotor, frontRightMotor);
+    static SupplyCurrentLimitConfiguration configTalonCurrent = new SupplyCurrentLimitConfiguration(true,55,0,0);
 
-    final DifferentialDrive Tankdrive = new DifferentialDrive(leftGroup, rightGroup);
+    
     //gyro
     final static AHRS ahrs = new AHRS(Port.kUSB1);
     
     
 
 //Motor settings
-public static void driveSettings(){
-      SupplyCurrentLimitConfiguration configTalonCurrent = new SupplyCurrentLimitConfiguration(true,55,0,0);
-          frontRightMotor.configSupplyCurrentLimit(configTalonCurrent);
-          frontLeftMotor.configSupplyCurrentLimit(configTalonCurrent);
-          backLeftMotor.configSupplyCurrentLimit(configTalonCurrent);
-          backRightMotor.configSupplyCurrentLimit(configTalonCurrent);      
-}
+    public static void driveSettings(){
+      frontRightMotor.configSupplyCurrentLimit(configTalonCurrent);
+      frontLeftMotor.configSupplyCurrentLimit(configTalonCurrent);
+      backLeftMotor.configSupplyCurrentLimit(configTalonCurrent);
+      backRightMotor.configSupplyCurrentLimit(configTalonCurrent);
+    }
+
 //drive with input  
     public void Drive(double left, double right){
       leftGroup.set(left * Constants.multiplier);
@@ -99,11 +99,11 @@ public static void driveSettings(){
       return ahrs.getWorldLinearAccelZ();
     }
 
-    
     @Override
     public void periodic() {
 
      Constants.encoderPos = (backLeftMotor.getSelectedSensorPosition() / 2048) * 360;
+     //every revolution on the motor is now worth 360, 
       double encoderVel = (backLeftMotor.getSelectedSensorVelocity() / 2048) * 360 * 10;
       Constants.error = Constants.wanted - Constants.encoderPos;
 
@@ -120,7 +120,7 @@ public static void driveSettings(){
       SmartDashboard.putNumber("Pitch",  driveTrain.getGyroPitch());
 
 /*     
-
+//Widget testing on shuffleboard 
     Shuffleboard.getTab("SmartDashboard")
       .add("Angle", driveTrain.getGyroAngle()).withWidget(BuiltInWidgets.kGyro);
 
