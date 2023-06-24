@@ -33,7 +33,7 @@ Holds the command-based joysticks as well as their command bindings. Also holds 
 
 Commands
 - Autos -
-Holds command sets for autonomous.
+Holds sets of autonomous routines.
 
 Subsystems
 
