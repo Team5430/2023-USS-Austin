@@ -17,7 +17,7 @@ permissions:
   contents: read
 
 jobs:
-  Linux:
+  Linux_Build:
 
     runs-on: ubuntu-latest
 
@@ -32,7 +32,7 @@ jobs:
       uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
       with:
         arguments: build
-  macOs: 
+  macOs_Build: 
   
     runs-on: macos-latest
   
@@ -47,7 +47,7 @@ jobs:
       uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
       with:
         arguments: build
-  Windows:
+  Windows_Build:
     
     runs-on: windows-latest
     
