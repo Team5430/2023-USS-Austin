@@ -48,10 +48,10 @@ public final static CommandJoystick m_Controller0 = new CommandJoystick(Operator
       new RunCommand(() -> m_armSub.rotating(m_Controller0.getRawAxis(0)), m_armSub));
       //gripper control
     m_gripperSub.setDefaultCommand(
-      new RunCommand(() -> m_gripperSub.gripping(RobotContainer.m_Controller0.getRawAxis(2) - RobotContainer.m_Controller0.getRawAxis(3))));
+      new RunCommand(() -> m_gripperSub.gripping(RobotContainer.m_Controller0.getRawAxis(2) - RobotContainer.m_Controller0.getRawAxis(3)), m_gripperSub));
       //extending control
     m_extendSub.setDefaultCommand(
-      new RunCommand(() -> m_extendSub.extending(RobotContainer.m_Controller0.getRawAxis(5))));
+      new RunCommand(() -> m_extendSub.extending(RobotContainer.m_Controller0.getRawAxis(5)), m_extendSub));
   }
 
   /**
