@@ -32,8 +32,11 @@ Holds the robot container and command scheduler used by the subsystems in comman
 Holds the command-based joysticks as well as their command bindings. Also holds the subsystems and default commands for the command scheduler.
 
 Commands
-- Autos -
-Holds sets of autonomous routines.
+- Auto_*number* -
+Holds sets of actions for certain autonomous routines.
+
+- AutoSelection -
+(unfinished) Holds mappings for potential choices for autonomous routines.
 
 Subsystems
 
