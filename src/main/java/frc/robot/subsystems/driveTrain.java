@@ -17,7 +17,7 @@ public class driveTrain extends SubsystemBase  {
    final static  WPI_TalonFX backRightMotor = new WPI_TalonFX(Constants.CANid.kBackRightFX);//
    final static  WPI_TalonFX backLeftMotor = new WPI_TalonFX(Constants.CANid.kBackLeftFX);
    final static  WPI_TalonFX frontRightMotor = new WPI_TalonFX(Constants.CANid.kFrontRightFX);
-   final static  WPI_TalonFX frontLeftMotor = new WPI_TalonFX(Constants.CANid.kBackLeftFX);
+   final static  WPI_TalonFX frontLeftMotor = new WPI_TalonFX(Constants.CANid.kFrontLeftFX);
       //organizes motor conrollers into groups, left and right respectively
     final MotorControllerGroup leftGroup = new MotorControllerGroup(backLeftMotor, frontLeftMotor);
     final MotorControllerGroup rightGroup = new MotorControllerGroup(backRightMotor, frontRightMotor);
