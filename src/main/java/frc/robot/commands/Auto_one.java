@@ -11,9 +11,9 @@ public class Auto_one extends SequentialCommandGroup {
    *   * @param drive The drive subsystem this command will run on
    * @return 
    */
-  public void Auto_example(driveTrain drive) {
-    addCommands(
-    );
+  public Auto_one(driveTrain drive){
+    
+    drive.driveInDistance(3, 0.3);
   }
 
 }
