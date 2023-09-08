@@ -9,9 +9,13 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.PrintCommand;
 import edu.wpi.first.wpilibj2.command.SelectCommand;
+import frc.robot.subsystems.driveTrain;
 
 //WIP autoselector
 public final class AutoSelection extends CommandBase {
+
+  private final driveTrain m_dTrain = new driveTrain();
+
   /** Example static factory for an autonomous command. */
  private enum AutoChoice{
   AUTO_ONE,
@@ -28,8 +32,8 @@ public final class AutoSelection extends CommandBase {
       new SelectCommand(
           // Maps selector values to commands
           Map.ofEntries(
-
-              Map.entry(AutoChoice.AUTO_ONE, new PrintCommand("Sure about this?")),
+                //example of auto being chosen right here!
+              Map.entry(AutoChoice.AUTO_ONE, new Auto_one(m_dTrain)),
 
               Map.entry(AutoChoice.AUTO_TWO, new PrintCommand("Woah, there's errors")),
 
