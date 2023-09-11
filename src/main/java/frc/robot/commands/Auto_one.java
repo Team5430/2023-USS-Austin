@@ -17,7 +17,15 @@ public class Auto_one extends SequentialCommandGroup {
    */
   public Auto_one(driveTrain drive){
     
+    //example
     drive.driveInDistance(3, 0.3);
+    rotationSub.rotateinPower(0);
+    extendSub.extendPower(0);
+    gripperSub.gripinPower(0);
+    
+    
+    
   }
+
 
 }

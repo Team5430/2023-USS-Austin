@@ -13,7 +13,7 @@ public class gripperSub extends SubsystemBase{
 
     private static TalonSRX gripperSRX = new TalonSRX(Constants.CANid.kGripperSRX);
     static TalonSRXConfiguration G_configSRX = new TalonSRXConfiguration();
-    Timer gTimer = new Timer();
+    static Timer gTimer = new Timer();
 
     public static void GripperSRXsettings(){
     //SRX Settings
@@ -27,7 +27,11 @@ public class gripperSub extends SubsystemBase{
         gripperSRX.set(ControlMode.PercentOutput, axis * .35);
     }
 
-    public void gripinTime(double time, double power){
+    public static void gripinPower(double power){
+        gripperSRX.set(ControlMode.PercentOutput, power);
+    }
+
+    public static void gripinTime(double time, double power){
         
         if(gTimer.get() < time){
             gripperSRX.set(ControlMode.PercentOutput, power);}
