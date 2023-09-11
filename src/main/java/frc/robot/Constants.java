@@ -32,6 +32,7 @@ public static double boundsOfDegree = 10;
 
 
 
+
   public static class CANid{
     public static final int kRotateSRX = 6;
     public static final int kGripperSRX = 7;
