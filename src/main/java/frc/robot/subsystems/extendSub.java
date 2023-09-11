@@ -13,7 +13,7 @@ public class extendSub extends SubsystemBase {
     
     private static TalonSRX extendSRX = new TalonSRX(Constants.CANid.kExtendSRX);
    static TalonSRXConfiguration E_configSRX = new TalonSRXConfiguration();
-   Timer eTimer = new Timer();
+   static Timer eTimer = new Timer();
 
     public static void ExtenderSRXsettings(){
     //SRX Settings
@@ -26,7 +26,11 @@ public class extendSub extends SubsystemBase {
     public void extending(double axis){
      extendSRX.set(ControlMode.PercentOutput, axis);
     }
-    public void extendTime(double time, double power){
+    public static void extendPower(double power){
+     extendSRX.set(ControlMode.PercentOutput, power);
+    }
+
+    public static void extendTime(double time, double power){
     
     if(eTimer.get() < time){
         extendSRX.set(ControlMode.PercentOutput, power);}

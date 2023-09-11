@@ -11,7 +11,7 @@ import frc.robot.Constants;
 public class rotationSub extends SubsystemBase{
     private static TalonSRX rotateSRX = new TalonSRX(Constants.CANid.kRotateSRX);
     static TalonSRXConfiguration R_configSRX = new TalonSRXConfiguration();
-    Timer rTimer = new Timer();
+    static Timer rTimer = new Timer();
 
 public static void RotaterSRXsettings(){
     //SRX Settings
@@ -24,7 +24,10 @@ public static void RotaterSRXsettings(){
     public void rotating(double axis){
         rotateSRX.set(ControlMode.PercentOutput, axis);
     }    
-    public void rotateinTime(double time, double power){
+    public static void rotateinPower(double power){
+        rotateSRX.set(ControlMode.PercentOutput, power);
+    }
+    public static void rotateinTime(double time, double power){
 
         if(rTimer.get() < time){
             rotateSRX.set(ControlMode.PercentOutput, power);}
