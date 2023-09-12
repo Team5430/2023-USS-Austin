@@ -80,7 +80,7 @@ public class Robot extends TimedRobot {
       Auto_one.schedule();
       }
       if (Auto_two != null) {
-        Auto_one.schedule();
+        Auto_two.schedule();
         }
   }
 
