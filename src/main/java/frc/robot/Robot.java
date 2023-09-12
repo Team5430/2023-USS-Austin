@@ -24,7 +24,7 @@ import frc.robot.subsystems.rotationSub;
  */
 public class Robot extends TimedRobot {
   private SequentialCommandGroup Auto_one;
-
+  private SequentialCommandGroup Auto_two; 
   private RobotContainer m_robotContainer;
   
   // Creates a new AHRS object under ahrs.
@@ -76,10 +76,14 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
 
     // schedule the autonomous command 
-    if (Auto_one != null) {
+    /*if (Auto_one != null) {
       Auto_one.schedule();
-      
-    }
+      }
+      if (Auto_two != null) {
+        Auto_two.schedule();
+        }
+        */
+        
   }
 
   /** This function is called periodically during autonomous. */
@@ -94,6 +98,9 @@ public class Robot extends TimedRobot {
     // this line or comment it out.
     if (Auto_one != null) {
       Auto_one.cancel();
+    }
+    if (Auto_two != null){
+      Auto_two.cancel();
     }
 
   }

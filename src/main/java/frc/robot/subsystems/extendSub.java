@@ -36,8 +36,13 @@ public class extendSub extends SubsystemBase {
         extendSRX.set(ControlMode.PercentOutput, power);}
         else 
     {eTimer.reset(); 
+        eTimer.stop();} 
+    }
+    //Time Method for retracting with negative value (change of polarity)
+    public static void retractTime(double time, double power){
+        if (eTimer.get() < time){
+         extendSRX.set(ControlMode.PercentOutput, -power);}
+         {eTimer.reset();
         eTimer.stop();}
-
     }
-
-    }
+}

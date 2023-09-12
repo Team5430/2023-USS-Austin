@@ -5,10 +5,13 @@
 package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
+import frc.robot.commands.AutoSelection;
+import frc.robot.commands.Auto_one;
 import frc.robot.subsystems.rotationSub;
 import frc.robot.subsystems.driveTrain;
 import frc.robot.subsystems.extendSub;
 import frc.robot.subsystems.gripperSub;
+import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
@@ -27,6 +30,7 @@ public class RobotContainer {
   private final rotationSub m_armSub = new rotationSub();
   private final gripperSub m_gripperSub = new gripperSub();
   private final extendSub m_extendSub = new extendSub();
+
 
 //Joysticks for driver
 public final static CommandJoystick m_JoystickLeft = new CommandJoystick(OperatorConstants.kLeftJoystickPort);
@@ -74,7 +78,6 @@ public final static CommandJoystick m_Controller0 = new CommandJoystick(Operator
     joyButtonRight.onTrue(new InstantCommand(m_DriveTrain:: VariableSpeedDecrease, m_DriveTrain));
     calibButton.onTrue(new InstantCommand(m_DriveTrain:: calibrateGyro));
     zeroYaw.onTrue(new InstantCommand(m_DriveTrain:: gyro0Yaw));
-
   }
 
 

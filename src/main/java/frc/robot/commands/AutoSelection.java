@@ -35,7 +35,7 @@ public final class AutoSelection extends CommandBase {
                 //example of auto being chosen right here!
               Map.entry(AutoChoice.AUTO_ONE, new Auto_one(m_dTrain)),
 
-              Map.entry(AutoChoice.AUTO_TWO, new PrintCommand("Woah, there's errors")),
+              Map.entry(AutoChoice.AUTO_TWO, new Auto_two(m_dTrain)),
 
               Map.entry(AutoChoice.AUTO_THREE, new PrintCommand("What do I put here?"))),
   //select is chosen from above
