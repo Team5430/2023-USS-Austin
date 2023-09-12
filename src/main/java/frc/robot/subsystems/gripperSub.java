@@ -40,5 +40,15 @@ public class gripperSub extends SubsystemBase{
         gTimer.stop();}
 
     }
+//Same thing for gripinTime, but reverse poleraity
+    public static void releasingTime(double time, double power){
+        
+        if(gTimer.get() < time){
+            gripperSRX.set(ControlMode.PercentOutput, -power);}
+        else 
+    {gTimer.reset();
+        gTimer.stop();}
+
+    }
 
 }
