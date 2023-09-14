@@ -5,7 +5,6 @@
 package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
-import frc.robot.commands.AutoSelection;
 import frc.robot.commands.Auto_one;
 import frc.robot.subsystems.rotationSub;
 import frc.robot.subsystems.driveTrain;
