@@ -41,5 +41,5 @@ public final class AutoSelection extends CommandBase {
   //select is chosen from above
           this::select);
 
-  
+          
 }

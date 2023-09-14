@@ -8,11 +8,14 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import frc.robot.subsystems.driveTrain;
 import frc.robot.subsystems.extendSub;
 import frc.robot.subsystems.gripperSub;
 import frc.robot.subsystems.rotationSub;
-
+import frc.robot.commands.Auto_one;
+import frc.robot.commands.Auto_two;
+import frc.robot.commands.*;
 
 
 
@@ -23,6 +26,10 @@ import frc.robot.subsystems.rotationSub;
  * project.
  */
 public class Robot extends TimedRobot {
+
+  //making drivetrain as function for m_chooser
+  private final driveTrain mdrivetrain = new driveTrain();
+
   private SequentialCommandGroup Auto_one;
   private SequentialCommandGroup Auto_two; 
   private RobotContainer m_robotContainer;
@@ -44,6 +51,11 @@ public class Robot extends TimedRobot {
     rotationSub.RotaterSRXsettings();
   //NOT in robotcontainer due to only one run needed
 
+  //add on to dashboard to run autonomous functionally 
+  final SendableChooser m_chooser = new SendableChooser<>();
+  m_chooser.addOption("Goal+Dock", new Auto_one(mdrivetrain));
+  m_chooser.addOption("Goal only", new Auto_two(mdrivetrain));
+ 
   }
 
   /**
@@ -75,14 +87,20 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
 
-    // schedule the autonomous command 
-    /*if (Auto_one != null) {
+    // schedule the autonomous command
+
+   /*  private String m_autoSelected;
+    private final SendableChooser<String> m_chooser = new SendableChooser<>();
+    m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
+    m_chooser.addOption("My Auto", kCustomAuto);
+    SmartDashboard.putData("Auto choices", m_chooser);
+     */ if (Auto_one != null) {
       Auto_one.schedule();
       }
       if (Auto_two != null) {
         Auto_two.schedule();
         }
-        */
+        
         
   }
 
@@ -96,13 +114,13 @@ public class Robot extends TimedRobot {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
-    if (Auto_one != null) {
+    /* if (Auto_one != null) {
       Auto_one.cancel();
     }
     if (Auto_two != null){
       Auto_two.cancel();
     }
-
+    */
   }
 
   /** This function is called periodically during operator control. */
