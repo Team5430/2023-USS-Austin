@@ -5,19 +5,20 @@ import frc.robot.subsystems.rotationSub;
 import frc.robot.subsystems.gripperSub;
 import frc.robot.subsystems.extendSub;
 import frc.robot.Constants;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 
 
 //sequential command groups go by steps. 
 //ex. step one first *then* step two and so on.
-public class Auto_one extends SequentialCommandGroup {
+public class Auto_one extends CommandBase {
   /** 
    *   * @param drive The drive subsystem this command will run on
    * 
    */
   public Auto_one(driveTrain drive){
     
-    //example
+    //example; all you gotta do is pull functions from their respective subsystems
     /*drive.driveInDistance(3, 0.3);
     rotationSub.rotateinPower(1);
     extendSub.extendPower(1);

@@ -9,13 +9,13 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.driveTrain;
 import frc.robot.subsystems.extendSub;
 import frc.robot.subsystems.gripperSub;
 import frc.robot.subsystems.rotationSub;
 import frc.robot.commands.Auto_one;
 import frc.robot.commands.Auto_two;
-import frc.robot.commands.*;
 
 
 
@@ -33,6 +33,8 @@ public class Robot extends TimedRobot {
   private SequentialCommandGroup Auto_one;
   private SequentialCommandGroup Auto_two; 
   private RobotContainer m_robotContainer;
+
+
   
   // Creates a new AHRS object under ahrs.
   /**
@@ -51,12 +53,14 @@ public class Robot extends TimedRobot {
     rotationSub.RotaterSRXsettings();
   //NOT in robotcontainer due to only one run needed
 
-  //add on to dashboard to run autonomous functionally 
-  final SendableChooser m_chooser = new SendableChooser<>();
-  m_chooser.addOption("Goal+Dock", new Auto_one(mdrivetrain));
-  m_chooser.addOption("Goal only", new Auto_two(mdrivetrain));
- 
-  }
+//add on to dashboard to run autonomous functionally 
+SendableChooser<Command> m_chooser = new SendableChooser<Command>();
+  
+SmartDashboard.putData("Auton Choice", m_chooser);
+
+m_chooser.addOption("Goal Dock", new Auto_one(mdrivetrain));
+m_chooser.addOption("Goal only", new Auto_two(mdrivetrain));
+
 
   /**
    * This function is called every 20 ms, no matter the mode. Use this for items like diagnostics
@@ -64,7 +68,7 @@ public class Robot extends TimedRobot {
    *
    * <p>This runs after the mode specific periodic functions, but before LiveWindow and
    * SmartDashboard integrated updating.
-   */
+  */}
   @Override
   public void robotPeriodic() {
     // Runs the Scheduler.  This is responsible for polling buttons, adding newly-scheduled
@@ -88,20 +92,9 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
 
     // schedule the autonomous command
-
-   /*  private String m_autoSelected;
-    private final SendableChooser<String> m_chooser = new SendableChooser<>();
-    m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
-    m_chooser.addOption("My Auto", kCustomAuto);
-    SmartDashboard.putData("Auto choices", m_chooser);
-     */ if (Auto_one != null) {
-      Auto_one.schedule();
-      }
-      if (Auto_two != null) {
-        Auto_two.schedule();
-        }
-        
-        
+   
+  
+  
   }
 
   /** This function is called periodically during autonomous. */
