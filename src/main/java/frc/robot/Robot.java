@@ -53,13 +53,6 @@ public class Robot extends TimedRobot {
     rotationSub.RotaterSRXsettings();
   //NOT in robotcontainer due to only one run needed
 
-//add on to dashboard to run autonomous functionally 
-SendableChooser<Command> m_chooser = new SendableChooser<>();
-  
-SmartDashboard.putData("Auton Choice", m_chooser);
-
-m_chooser.addOption("Goal Dock", new Auto_one(mdrivetrain));
-m_chooser.addOption("Goal only", new Auto_two(mdrivetrain));
 
 
   /**
@@ -92,7 +85,15 @@ m_chooser.addOption("Goal only", new Auto_two(mdrivetrain));
   public void autonomousInit() {
 
     // schedule the autonomous command
-   
+
+   //add on to dashboard to run autonomous functionally 
+  SendableChooser<Command> m_chooser = new SendableChooser<>();
+  
+  SmartDashboard.putData("Auton Choice", m_chooser);
+
+  m_chooser.addOption("Goal Dock", new Auto_one(mdrivetrain));
+  m_chooser.addOption("Goal only", new Auto_two(mdrivetrain));
+
   
   
   }
