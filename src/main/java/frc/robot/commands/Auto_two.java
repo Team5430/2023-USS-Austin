@@ -5,12 +5,16 @@ import frc.robot.subsystems.rotationSub;
 import frc.robot.subsystems.gripperSub;
 import frc.robot.subsystems.extendSub;
 import frc.robot.Constants;
+
+import org.ejml.equation.IntegerSequence.Combined;
+
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 
 
 //sequential command groups go by steps. 
 //ex. step one first *then* step two and so on.
-public class Auto_two extends SequentialCommandGroup {
+public class Auto_two extends CommandBase {
   /** 
    *   * @param drive The drive subsystem this command will run on
    * 
