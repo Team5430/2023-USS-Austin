@@ -42,6 +42,7 @@ public class driveTrain extends SubsystemBase  {
       rightGroup.set(-right * Constants.multiplier); 
   }
 //Auto Drive
+
     public void AutoDrive(double left, double right){
       leftGroup.set(left);
       rightGroup.set(-right);
@@ -54,10 +55,24 @@ public class driveTrain extends SubsystemBase  {
       Constants.multiplier -= .1;
     }
     //Drive in distance
-    public void driveInDistance(double distance, double power){
+    public void driveInDistance(double distanceinInches, double power){
         Constants.previousEncoderPos = Constants.encoderPos;
-      while ((( Constants.encoderPos - Constants.previousEncoderPos) * 360 * Constants.wheelCircumference) / 12 < distance){
+      while ((( Constants.encoderPos - Constants.previousEncoderPos) * 360 * Constants.wheelCircumference) / 12 < distanceinInches){
         AutoDrive(power, -power);
+        }
+      }
+
+      //going to assume a wheel on the turning point spins once every two rotation on the turning 1:2
+      //WIP needs to have another variable that determines how long they turn! 
+      public void turn90degrees(String direction){
+        switch(direction){
+          case "left":
+        leftGroup.set(0.3);
+        rightGroup.set(-0.15);
+
+          case "right":
+          leftGroup.set(-0.15);
+          rightGroup.set(0.3);
         }
       }
   

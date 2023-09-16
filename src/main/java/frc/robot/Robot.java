@@ -54,7 +54,7 @@ public class Robot extends TimedRobot {
   //NOT in robotcontainer due to only one run needed
 
 //add on to dashboard to run autonomous functionally 
-SendableChooser<Command> m_chooser = new SendableChooser<Command>();
+SendableChooser<Command> m_chooser = new SendableChooser<>();
   
 SmartDashboard.putData("Auton Choice", m_chooser);
 

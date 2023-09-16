@@ -20,23 +20,21 @@ public class Auto_two extends CommandBase {
    * 
    */
   public Auto_two(driveTrain drive) {
-    System.out.println("rotating..");
-    rotationSub.rotateinTime(1, 0.6);
+    //bring arm upwards to postion for scoring
+    rotationSub.rotateinTime(2.5, -0.9);
+    ///extend out arm 
+    extendSub.extendPower( 0.35);
+    // let out cargo; bring claws out
+    gripperSub.gripinTime(1, -0.5);   
+    //bring in claws back in
+    gripperSub.gripinTime(1, 0.5);
+    //retracts arm back into position 
+    extendSub.extendPower(-0.35);
+    //rotates arm back into position
+    rotationSub.rotateinTime(2.5, 0.9);
+    
+    drive.driveInDistance(24, 0.5);
 
-    System.out.println("Raising my arm!!!! RRAAAAHHHH!!!");
-    extendSub.extendTime(0.5, 0.6);
-
-    System.out.println("Oh lord, get a grip you're coming apart!!!");
-    gripperSub.gripinTime(0.8, 0.7);
-
-    System.out.println("Get this thing off my hand >:(");
-    gripperSub.releasingTime(0.8, 0.7);
-
-    System.out.println("Retracting..");
-    extendSub.retractTime(2, 0.6);
-
-    System.out.println("Reseting the grabbing point");
-    gripperSub.gripinTime(0.8, 0.7);
 
   }
 }
