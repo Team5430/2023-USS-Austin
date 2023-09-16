@@ -24,7 +24,7 @@ public class extendSub extends SubsystemBase {
     }
     //method for extending arm using CoPilot
     public void extending(double axis){
-     extendSRX.set(ControlMode.PercentOutput, axis);
+     extendSRX.set(ControlMode.PercentOutput, axis * .25);
     }
     public static void extendPower(double power){
      extendSRX.set(ControlMode.PercentOutput, power);
