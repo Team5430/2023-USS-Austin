@@ -34,6 +34,13 @@ public class Robot extends TimedRobot {
   private SequentialCommandGroup Auto_two; 
   private RobotContainer m_robotContainer;
 
+  private String m_autoselected;
+  SendableChooser<String> m_chooser = new SendableChooser<>();
+
+
+  private static final String KDOCKER = "Docker Auto";
+  private static final String KGOALONLY = "Goal!";
+
 
   
   // Creates a new AHRS object under ahrs.
@@ -53,6 +60,14 @@ public class Robot extends TimedRobot {
     rotationSub.RotaterSRXsettings();
   //NOT in robotcontainer due to only one run needed
 
+
+    // schedule the autonomous command
+   //add on to dashboard to run autonomous functionally 
+  
+   SmartDashboard.putData("Auton Choice", m_chooser);
+   
+   m_chooser.addOption("Goal Dock", KDOCKER);
+   m_chooser.addOption("Goal only", KGOALONLY);
 
 
   /**
@@ -85,22 +100,16 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
 
     // schedule the autonomous command
-
-   //add on to dashboard to run autonomous functionally 
-  SendableChooser<Command> m_chooser = new SendableChooser<>();
-  
-  SmartDashboard.putData("Auton Choice", m_chooser);
-
-  m_chooser.addOption("Goal Dock", new Auto_one(mdrivetrain));
-  m_chooser.addOption("Goal only", new Auto_two(mdrivetrain));
-
+   
   
   
   }
 
   /** This function is called periodically during autonomous. */
   @Override
-  public void autonomousPeriodic() {}
+  public void autonomousPeriodic() {
+  
+  }
 
   @Override
   public void teleopInit() {
@@ -109,7 +118,8 @@ public class Robot extends TimedRobot {
     // continue until interrupted by another command, remove
     // this line or comment it out.
     /* if (Auto_one != null) {
-      Auto_one.cancel();
+      Auto_one.ca
+    ncel();
     }
     if (Auto_two != null){
       Auto_two.cancel();

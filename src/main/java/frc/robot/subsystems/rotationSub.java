@@ -28,11 +28,15 @@ public static void RotaterSRXsettings(){
         rotateSRX.set(ControlMode.PercentOutput, power);
     }
     public static void rotateinTime(double time, double power){
+    rTimer.reset();
+        rTimer.start();
+        while(rTimer.get() <= time){
+            rotateSRX.set(ControlMode.PercentOutput, power);
+                if(rTimer.get() <= time){
+                    rotateSRX.set(ControlMode.PercentOutput, 0);
+                }}
 
-        if(rTimer.get() < time){
-            rotateSRX.set(ControlMode.PercentOutput, power);}
-            else
-        {rTimer.reset();
-            rTimer.stop();}
+            rTimer.stop();
+ 
     }
 }
