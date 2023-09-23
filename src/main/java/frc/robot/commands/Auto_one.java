@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 
 //sequential command groups go by steps. 
 //ex. step one first *then* step two and so on.
-public class Auto_one extends CommandBase {
+public class Auto_one extends SequentialCommandGroup {
   /** 
    *   * @param drive The drive subsystem this command will run on
    * 
@@ -28,28 +28,27 @@ public class Auto_one extends CommandBase {
   
 
     System.out.println("rotating arm...");
-    rotationSub.rotateinTime(1, 0.6);
+    rotationSub.rotateinTime(2, -0.3);
 
      System.out.println("Raising my arm!!!! RRAAAAHH!!!");
-      extendSub.extendTime(0.5, 0.6);
-     
+      extendSub.extendTime(1.15, -0.3);
+    //this perfectly crosses the distance the arm from up and down.
+      
      /*  System.out.println("Oh lord, get a grip you're coming apart!!!");
     gripperSub.gripinTime(0.8, 0.7); */
             
     System.out.println("Get this thing off my hand >:(");
-    gripperSub.releasingTime(0.8, 0.7);
-
-    System.out.println("Retracting..");
-    extendSub.retractTime(2, 0.6);
+    gripperSub.releasingTime(0.8, 0.07);
 
     System.out.println("Reseting the grabbing point");
-    gripperSub.gripinTime(0.8,0.7);
+    gripperSub.gripinTime(0.8,0.02);
    
     /*I wanted to try doing reverse value in a same function without creating a function for reverse polarity
     -Anthony S.
     */    
+    //not working atm lookin to later
     System.out.println("Ima cook on the docking station");
-   drive.driveInDistance(3.0,-0.5);
+   drive.driveInDistance(12, 0.25);
 
 
   }

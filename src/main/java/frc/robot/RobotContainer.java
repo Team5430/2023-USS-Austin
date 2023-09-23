@@ -75,8 +75,8 @@ public final static CommandJoystick m_Controller0 = new CommandJoystick(Operator
     
     joyButtonLeft.onTrue(new InstantCommand(m_DriveTrain:: VariableSpeedIncrease, m_DriveTrain));
     joyButtonRight.onTrue(new InstantCommand(m_DriveTrain:: VariableSpeedDecrease, m_DriveTrain));
-    calibButton.onTrue(new InstantCommand(m_DriveTrain:: calibrateGyro));
-    zeroYaw.onTrue(new InstantCommand(m_DriveTrain:: gyro0Yaw));
+     calibButton.onTrue(new InstantCommand(m_DriveTrain:: calibrateGyro));
+    zeroYaw.onTrue(new InstantCommand(m_DriveTrain:: gyro0Yaw)); 
   }
 
 
