@@ -41,6 +41,8 @@ public class Robot extends TimedRobot {
   private static final String KDOCKER = "Docker Auto";
   private static final String KGOALONLY = "Goal!";
 
+  public static int autoStatus = 0;
+
 
   
   // Creates a new AHRS object under ahrs.
@@ -117,14 +119,13 @@ public class Robot extends TimedRobot {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
-    /* if (Auto_one != null) {
-      Auto_one.ca
-    ncel();
-    }
-    if (Auto_two != null){
-      Auto_two.cancel();
-    }
-    */
+  if(autoStatus == 1){
+    Auto_one.cancel();
+  }
+
+  if(autoStatus == 2){
+    Auto_two.cancel();
+  }
   }
 
   /** This function is called periodically during operator control. */

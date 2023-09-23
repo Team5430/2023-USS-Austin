@@ -5,6 +5,7 @@ import frc.robot.subsystems.rotationSub;
 import frc.robot.subsystems.gripperSub;
 import frc.robot.subsystems.extendSub;
 import frc.robot.Constants;
+import frc.robot.Robot;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 
@@ -50,7 +51,7 @@ public class Auto_one extends SequentialCommandGroup {
     System.out.println("Ima cook on the docking station");
    drive.driveInDistance(12, 0.25);
 
-
+    Robot.autoStatus = 1;
   }
 
 
