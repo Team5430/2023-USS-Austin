@@ -57,7 +57,7 @@ public class driveTrain extends SubsystemBase  {
     //Drive in distance
     public void driveInDistance(double distanceinInches, double power){
         Constants.previousEncoderPos = Constants.encoderPos;
-      while ((( Constants.encoderPos - Constants.previousEncoderPos) * 360 * Constants.wheelCircumference) / 12 < distanceinInches){
+      while ((( Constants.encoderPos - Constants.previousEncoderPos) * Constants.wheelCircumference) / 12 < distanceinInches){
         AutoDrive(power, -power);
         }
       }
