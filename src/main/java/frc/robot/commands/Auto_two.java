@@ -5,6 +5,7 @@ import frc.robot.subsystems.rotationSub;
 import frc.robot.subsystems.gripperSub;
 import frc.robot.subsystems.extendSub;
 import frc.robot.Constants;
+import frc.robot.Robot;
 
 import org.ejml.equation.IntegerSequence.Combined;
 
@@ -34,6 +35,8 @@ public class Auto_two extends CommandBase {
     rotationSub.rotateinTime(2.5, 0.9);
     
     drive.driveInDistance(24, 0.5);
+
+    Robot.autoStatus = 2;
 
 
   }

@@ -34,7 +34,7 @@ public class Robot extends TimedRobot {
   private SequentialCommandGroup Auto_two; 
   private RobotContainer m_robotContainer;
 
-  private String m_autoselected;
+  public String m_autoselected;
   SendableChooser<String> m_chooser = new SendableChooser<>();
 
 
@@ -110,7 +110,22 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during autonomous. */
   @Override
   public void autonomousPeriodic() {
-  
+
+    autoStatus = 0;
+    m_autoselected = m_chooser.getSelected();
+    
+    switch (m_autoselected){
+
+      case KDOCKER:
+      Auto_one.schedule();
+      break;
+
+      case KGOALONLY:
+      Auto_two.schedule();
+      break;
+      
+    }
+     
   }
 
   @Override
