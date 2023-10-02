@@ -38,7 +38,6 @@ public class Robot extends TimedRobot {
   SendableChooser<String> m_chooser = new SendableChooser<>();
 
 
-  private static final String KDOCKER = "Docker Auto";
   private static final String KGOALONLY = "Goal!";
 
   public static int autoStatus = 0;
@@ -68,7 +67,6 @@ public class Robot extends TimedRobot {
   
    SmartDashboard.putData("Auton Choice", m_chooser);
    
-   m_chooser.addOption("Goal Dock", KDOCKER);
    m_chooser.addOption("Goal only", KGOALONLY);
 
 
@@ -100,10 +98,8 @@ public class Robot extends TimedRobot {
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
   @Override
   public void autonomousInit() {
-
-    // schedule the autonomous command
-   
-  
+    autoStatus = 0;
+     
   
   }
 
@@ -111,12 +107,11 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousPeriodic() {
 
-    autoStatus = 0;
     m_autoselected = m_chooser.getSelected();
     
     switch (m_autoselected){
-
-      case KDOCKER:
+//runs and autonmous regardless if a choice isn't set as to 
+      default:
       Auto_one.schedule();
       break;
 
@@ -134,11 +129,11 @@ public class Robot extends TimedRobot {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
-  if(autoStatus == 1){
+  if(Auto_one != null){
     Auto_one.cancel();
   }
 
-  if(autoStatus == 2){
+  if(Auto_two != null){
     Auto_two.cancel();
   }
   }
