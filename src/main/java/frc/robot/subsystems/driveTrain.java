@@ -4,9 +4,14 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.kauailabs.navx.frc.AHRS;
+
+import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.SerialPort.Port;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
@@ -18,15 +23,15 @@ public class driveTrain extends SubsystemBase  {
    final static  WPI_TalonFX frontRightMotor = new WPI_TalonFX(Constants.CANid.kFrontRightFX);
    final static  WPI_TalonFX frontLeftMotor = new WPI_TalonFX(Constants.CANid.kFrontLeftFX);
       //organizes motor conrollers into groups, left and right respectively
-    final MotorControllerGroup leftGroup = new MotorControllerGroup(backLeftMotor, frontLeftMotor);
-    final MotorControllerGroup rightGroup = new MotorControllerGroup(backRightMotor, frontRightMotor);
+    final static MotorControllerGroup leftGroup = new MotorControllerGroup(backLeftMotor, frontLeftMotor);
+    final static MotorControllerGroup rightGroup = new MotorControllerGroup(backRightMotor, frontRightMotor);
     static SupplyCurrentLimitConfiguration configTalonCurrent = new SupplyCurrentLimitConfiguration(true,55,0,0);
 
     
     //gyro
     final static AHRS ahrs = new AHRS(Port.kUSB1);
-    
-    
+
+    static Timer dTimer = new Timer();    
 
 //Motor settings
     public static void driveSettings(){
@@ -43,7 +48,7 @@ public class driveTrain extends SubsystemBase  {
   }
 //Auto Drive
 
-    public void AutoDrive(double left, double right){
+    public static void AutoDrive(double left, double right){
       leftGroup.set(left);
       rightGroup.set(-right);
     }
@@ -54,6 +59,15 @@ public class driveTrain extends SubsystemBase  {
     public void VariableSpeedDecrease(){
       Constants.multiplier -= .1;
     }
+  //Drive in Time
+    public static void driveinTime(double time, double power){
+      dTimer.start();
+         while(dTimer.get() <= time){
+             AutoDrive(power, power);}
+        AutoDrive(0, 0);
+     dTimer.reset();
+          dTimer.stop();
+    }
     //Drive in distance
     public void driveInDistance(double distanceinInches, double power){
         Constants.previousEncoderPos = Constants.encoderPos;
@@ -61,6 +75,7 @@ public class driveTrain extends SubsystemBase  {
         AutoDrive(power, -power);
         }
       }
+
 
       //going to assume a wheel on the turning point spins once every two rotation on the turning 1:2
       //WIP needs to have another variable that determines how long they turn! 
@@ -75,7 +90,9 @@ public class driveTrain extends SubsystemBase  {
           rightGroup.set(0.3);
         }
       }
-  
+   
+      
+
     public void calibrateGyro(){  
       // Calibrates the Gyro at beginning of lifetime. DO NOT TOUCH IT WHILE IT IS CALIBRATING!
       ahrs.calibrate();
@@ -112,6 +129,14 @@ public class driveTrain extends SubsystemBase  {
     public static double getAccelz(){
       return ahrs.getWorldLinearAccelZ();
     }
+  //commands 
+  public static CommandBase C_driveinTime(double time, double power){
+    return new InstantCommand(
+      () -> {
+        driveinTime(time, power);
+      }
+    );
+  }
 
     @Override
     public void periodic() {
@@ -144,7 +169,7 @@ public class driveTrain extends SubsystemBase  {
     Shuffleboard.getTab("SmartDashboard")
       .add("Pitch", driveTrain.getGyroPitch()).withWidget(BuiltInWidgets.kGyro);
 
-    Shuffleboard.getTab("SmartDashboard")
+    Shuffleboard.getTab("SmartDashboard") 
       .add();
     
     Shuffleboard.getTab("SmartDashboard")

@@ -5,11 +5,12 @@
 package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
-import frc.robot.commands.Auto_one;
+import frc.robot.commands.Autos;
 import frc.robot.subsystems.rotationSub;
 import frc.robot.subsystems.driveTrain;
 import frc.robot.subsystems.extendSub;
 import frc.robot.subsystems.gripperSub;
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
@@ -48,7 +49,7 @@ public final static CommandJoystick m_Controller0 = new CommandJoystick(Operator
       new RunCommand(() -> m_DriveTrain.Drive(m_JoystickLeft.getY(), m_JoystickRight.getY()),m_DriveTrain));
       //rotate arm
     m_armSub.setDefaultCommand(
-      new RunCommand(() -> m_armSub.rotating(m_Controller0.getRawAxis(0)), m_armSub));
+      new RunCommand(() -> m_armSub.rotating(m_Controller0.getRawAxis(1)), m_armSub));
       //gripper control
     m_gripperSub.setDefaultCommand(
       new RunCommand(() -> m_gripperSub.gripping(RobotContainer.m_Controller0.getRawAxis(2) - RobotContainer.m_Controller0.getRawAxis(3)), m_gripperSub));
@@ -79,6 +80,9 @@ public final static CommandJoystick m_Controller0 = new CommandJoystick(Operator
     zeroYaw.onTrue(new InstantCommand(m_DriveTrain:: gyro0Yaw)); 
   }
 
+public Command getAuton(){
+  return Autos.defaultAutonomous(m_DriveTrain);
+}   
 
 }
   

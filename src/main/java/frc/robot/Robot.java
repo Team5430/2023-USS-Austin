@@ -14,8 +14,7 @@ import frc.robot.subsystems.driveTrain;
 import frc.robot.subsystems.extendSub;
 import frc.robot.subsystems.gripperSub;
 import frc.robot.subsystems.rotationSub;
-import frc.robot.commands.Auto_one;
-import frc.robot.commands.Auto_two;
+
 
 
 
@@ -30,8 +29,9 @@ public class Robot extends TimedRobot {
   //making drivetrain as function for m_chooser
   private final driveTrain mdrivetrain = new driveTrain();
 
-  private SequentialCommandGroup Auto_one;
-  private SequentialCommandGroup Auto_two; 
+  
+  private Command m_autonomousCommand;
+
   private RobotContainer m_robotContainer;
 
   public String m_autoselected;
@@ -67,10 +67,9 @@ public class Robot extends TimedRobot {
   
    SmartDashboard.putData("Auton Choice", m_chooser);
    
-   m_chooser.addOption("Goal only", KGOALONLY);
 
 
-  /**
+  /*
    * This function is called every 20 ms, no matter the mode. Use this for items like diagnostics
    * that you want ran during disabled, autonomous, teleoperated and test.
    *
@@ -99,6 +98,12 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     autoStatus = 0;
+    m_autonomousCommand = m_robotContainer.getAuton();
+
+    if(m_autonomousCommand != null){
+      m_autonomousCommand.schedule();
+    }
+
      
   
   }
@@ -107,35 +112,20 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousPeriodic() {
 
-    m_autoselected = m_chooser.getSelected();
-    
-    switch (m_autoselected){
-//runs and autonmous regardless if a choice isn't set as to 
-      default:
-      Auto_one.schedule();
-      break;
-
-      case KGOALONLY:
-      Auto_two.schedule();
-      break;
-      
     }
      
-  }
+  
 
   @Override
   public void teleopInit() {
     // This makes sure that the autonomous stops running when
-    // teleop starts running. If you want the autonomous to
-    // continue until interrupted by another command, remove
-    // this line or comment it out.
-  if(Auto_one != null){
-    Auto_one.cancel();
-  }
+    // teleop starts running. 
+    if(m_autonomousCommand != null){
+      m_autonomousCommand.cancel();
+    }
+   
 
-  if(Auto_two != null){
-    Auto_two.cancel();
-  }
+
   }
 
   /** This function is called periodically during operator control. */

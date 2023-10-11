@@ -6,6 +6,8 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.TalonSRXConfiguration;
 
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -35,10 +37,16 @@ public class extendSub extends SubsystemBase {
     eTimer.start();
     while(eTimer.get() <= time){
         extendSRX.set(ControlMode.PercentOutput, power);
-        if(eTimer.get() >= time){
-            extendSRX.set(ControlMode.PercentOutput, 0);
-        }}
-        
+       }
+        extendSRX.set(ControlMode.PercentOutput, 0);
         eTimer.stop();
+    }
+    //comamnds
+    public static CommandBase C_extendTime(double time, double power){
+        return new InstantCommand(
+            () -> {
+                extendTime(time, power);
+            }
+        );
     }
 }
