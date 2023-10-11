@@ -6,6 +6,8 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.TalonSRXConfiguration;
 
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -35,23 +37,17 @@ public class gripperSub extends SubsystemBase{
     gTimer.start();
         while(gTimer.get() <= time){
             gripperSRX.set(ControlMode.PercentOutput, power);}
-         
+         gripperSRX.set(ControlMode.PercentOutput, 0);
     gTimer.reset();
         gTimer.stop();
 
     }
-//Same thing for gripinTime, but reverse poleraity
-    public static void releasingTime(double time, double power){
-    gTimer.reset();
-        gTimer.start();    
-        while(gTimer.get() <= time){
-            gripperSRX.set(ControlMode.PercentOutput, -power);
-                if(gTimer.get() >= time){
-                    gripperSRX.set(ControlMode.PercentOutput, 0);
-                }}
-         
-        gTimer.stop();
-
+    //commands
+    public static CommandBase C_gripinTime(double time, double power){
+        return new InstantCommand(
+            () -> {
+                gripinTime(time, power);
+            }
+        );
     }
-
 }

@@ -5,6 +5,8 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.TalonSRXConfiguration;
 
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -32,11 +34,17 @@ public static void RotaterSRXsettings(){
         rTimer.start();
         while(rTimer.get() <= time){
             rotateSRX.set(ControlMode.PercentOutput, power);
-                if(rTimer.get() <= time){
-                    rotateSRX.set(ControlMode.PercentOutput, 0);
-                }}
-
-            rTimer.stop();
+        }
+    rotateSRX.set(ControlMode.PercentOutput, 0);
+        rTimer.stop();
  
+    }
+    //commands
+    public static CommandBase C_rotateinTime(double time, double power){
+        return new InstantCommand(
+            () -> {
+                rotateinTime(time, power);
+            }
+        );
     }
 }
