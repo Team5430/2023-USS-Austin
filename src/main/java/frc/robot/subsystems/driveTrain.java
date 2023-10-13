@@ -43,12 +43,19 @@ public class driveTrain extends SubsystemBase  {
 
 //drive with input  
     public void Drive(double left, double right){
-      leftGroup.set(left * Constants.multiplier);
-      rightGroup.set(-right * Constants.multiplier); 
+    //sin used to smooth out the rate of acceleration
+    if(Constants.multiplier < 0){
+      leftGroup.set(Math.sin(left * Constants.multiplier)* -Math.sin(left * Constants.multiplier));
+      rightGroup.set(Math.sin(-right * Constants.multiplier) * -Math.sin(-right * Constants.multiplier)); 
+    }else{
+      leftGroup.set(Math.sin(left * Constants.multiplier)* Math.sin(left * Constants.multiplier));
+      rightGroup.set(Math.sin(-right * Constants.multiplier) * Math.sin(-right * Constants.multiplier));
+    }
   }
 //Auto Drive
 
     public static void AutoDrive(double left, double right){
+
       leftGroup.set(left);
       rightGroup.set(-right);
     }
@@ -59,6 +66,7 @@ public class driveTrain extends SubsystemBase  {
     public void VariableSpeedDecrease(){
       Constants.multiplier -= .1;
     }
+    
   //Drive in Time
     public static void driveinTime(double time, double power){
       dTimer.start();
