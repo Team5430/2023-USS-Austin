@@ -44,7 +44,7 @@ public class driveTrain extends SubsystemBase  {
 //drive with input  
     public void Drive(double left, double right){
     //sin used to smooth out the rate of acceleration
-    if(Constants.multiplier == -Math.abs(Constants.multiplier)){
+    if(Constants.multiplier < 0){
       leftGroup.set(Math.sin(left * Constants.multiplier)* -Math.sin(left * Constants.multiplier));
       rightGroup.set(Math.sin(-right * Constants.multiplier) * -Math.sin(-right * Constants.multiplier)); 
     }else{
