@@ -2,14 +2,15 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot;
+package com.frc.robot;
 
-import frc.robot.Constants.OperatorConstants;
-import frc.robot.commands.Autos;
-import frc.robot.subsystems.rotationSub;
-import frc.robot.subsystems.driveTrain;
-import frc.robot.subsystems.extendSub;
-import frc.robot.subsystems.gripperSub;
+import com.frc.robot.Constants.OperatorConstants;
+import com.frc.robot.commands.Autos;
+import com.frc.robot.subsystems.driveTrain;
+import com.frc.robot.subsystems.extendSub;
+import com.frc.robot.subsystems.gripperSub;
+import com.frc.robot.subsystems.rotationSub;
+
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.InstantCommand;

@@ -1,11 +1,12 @@
-package frc.robot.commands;
+package com.frc.robot.commands;
+
+import com.frc.robot.subsystems.driveTrain;
+import com.frc.robot.subsystems.extendSub;
+import com.frc.robot.subsystems.gripperSub;
+import com.frc.robot.subsystems.rotationSub;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.Commands;
-import frc.robot.subsystems.driveTrain;
-import frc.robot.subsystems.extendSub;
-import frc.robot.subsystems.gripperSub;
-import frc.robot.subsystems.rotationSub;
 
 public class Autos {
 

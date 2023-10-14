@@ -1,9 +1,11 @@
-package frc.robot.subsystems;
+package com.frc.robot.subsystems;
 
 
 import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
+import com.frc.robot.Constants;
 import com.kauailabs.navx.frc.AHRS;
+import com.frc.team5430.math.*;
 
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.Timer;
@@ -13,7 +15,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 
@@ -32,6 +33,11 @@ public class driveTrain extends SubsystemBase  {
     final static AHRS ahrs = new AHRS(Port.kUSB1);
 
     static Timer dTimer = new Timer();    
+    static pid drivePID = new pid(0, 0, 0);
+    PIDController p = new PIDController(getAccelz(), getAccelY(), getAccelX());
+    
+    
+        
 
 //Motor settings
     public static void driveSettings(){
@@ -55,7 +61,6 @@ public class driveTrain extends SubsystemBase  {
 //Auto Drive
 
     public static void AutoDrive(double left, double right){
-
       leftGroup.set(left);
       rightGroup.set(-right);
     }
