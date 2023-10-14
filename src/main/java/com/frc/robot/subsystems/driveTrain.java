@@ -33,12 +33,8 @@ public class driveTrain extends SubsystemBase  {
     final static AHRS ahrs = new AHRS(Port.kUSB1);
 
     static Timer dTimer = new Timer();    
-    static pid drivePID = new pid(0, 0, 0);
-    PIDController p = new PIDController(getAccelz(), getAccelY(), getAccelX());
+    static pid drivePID = new pid(0.5, .03, .02);
     
-    
-        
-
 //Motor settings
     public static void driveSettings(){
       frontRightMotor.configSupplyCurrentLimit(configTalonCurrent);
@@ -51,11 +47,19 @@ public class driveTrain extends SubsystemBase  {
     public void Drive(double left, double right){
     //sin used to smooth out the rate of acceleration
     if(Constants.multiplier < 0){
-      leftGroup.set(Math.sin(left * Constants.multiplier)* -Math.sin(left * Constants.multiplier));
-      rightGroup.set(Math.sin(-right * Constants.multiplier) * -Math.sin(-right * Constants.multiplier)); 
+      leftGroup.set(
+        drivePID.calc(Math.sin(left * Constants.multiplier)* -Math.sin(left * Constants.multiplier) * 1.35, 
+      Math.sin(left * Constants.multiplier)* -Math.sin(left * Constants.multiplier)));
+  //setpoint is multiplied by 1.35, as to have actual gains and loss through the loop instead of having them cancel out
+      rightGroup.set(drivePID.calc(Math.sin(-right * Constants.multiplier) * -Math.sin(-right * Constants.multiplier) * 1.35,
+      Math.sin(-right * Constants.multiplier) * -Math.sin(-right * Constants.multiplier))); 
+
     }else{
-      leftGroup.set(Math.sin(left * Constants.multiplier)* Math.sin(left * Constants.multiplier));
-      rightGroup.set(Math.sin(-right * Constants.multiplier) * Math.sin(-right * Constants.multiplier));
+      leftGroup.set(drivePID.calc(Math.sin(left * Constants.multiplier)* Math.sin(left * Constants.multiplier) * 1.35,
+      Math.sin(left * Constants.multiplier)* Math.sin(left * Constants.multiplier)));
+      
+      rightGroup.set(drivePID.calc(Math.sin(-right * Constants.multiplier) * Math.sin(-right * Constants.multiplier) * 1.35,
+      Math.sin(-right * Constants.multiplier) * Math.sin(-right * Constants.multiplier)));
     }
   }
 //Auto Drive
