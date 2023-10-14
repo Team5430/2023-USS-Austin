@@ -69,15 +69,18 @@ public class pid implements Sendable {
         lastTimestamp = Timer.getFPGATimestamp();
     }
 
-  public double calc(double setpoint, double position){
-    error = setpoint - position;
+  public double calc(double setpoint, double input){
+    error = setpoint - input;
     dT = Timer.getFPGATimestamp() - lastTimestamp;
     errorSum += error * dT;
     errorRate = (error - lastError) / dT;
     PIDoutput = kP_ * error + kI_ * errorSum + kD_ * errorRate;
+    //update values
+    lastError = error;
+    lastTimestamp = Timer.getFPGATimestamp();
     return PIDoutput;
   }
-  
+
   public void reset(){
     error = 0;
     lastError = 0;
