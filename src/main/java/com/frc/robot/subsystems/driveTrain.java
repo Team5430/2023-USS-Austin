@@ -21,10 +21,10 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 
 public class driveTrain extends SubsystemBase  {
-   final static  WPI_TalonFX backRightMotor = new WPI_TalonFX(Constants.CANid.kBackRightFX);
-   final static  WPI_TalonFX backLeftMotor = new WPI_TalonFX(Constants.CANid.kBackLeftFX);
-   final static  WPI_TalonFX frontRightMotor = new WPI_TalonFX(Constants.CANid.kFrontRightFX);
-   final static  WPI_TalonFX frontLeftMotor = new WPI_TalonFX(Constants.CANid.kFrontLeftFX);
+   final static  RoboTires backRightMotor = new RoboTires(Constants.CANid.kBackRightFX);
+   final static  RoboTires backLeftMotor = new RoboTires(Constants.CANid.kBackLeftFX);
+   final static  RoboTires frontRightMotor = new RoboTires(Constants.CANid.kFrontRightFX);
+   final static  RoboTires frontLeftMotor = new RoboTires(Constants.CANid.kFrontLeftFX);
       //organizes motor conrollers into groups, left and right respectively
     final static MotorControllerGroup leftGroup = new MotorControllerGroup(backLeftMotor, frontLeftMotor);
     final static MotorControllerGroup rightGroup = new MotorControllerGroup(backRightMotor, frontRightMotor);
