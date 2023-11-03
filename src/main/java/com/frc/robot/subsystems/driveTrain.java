@@ -6,8 +6,10 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.frc.robot.Constants;
 import com.kauailabs.navx.frc.AHRS;
 import com.frc.team5430.math.*;
+import com.frc.team5430.motors.RoboTires;
 
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.wpilibj.RobotState;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.SerialPort.Port;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
@@ -41,6 +43,7 @@ public class driveTrain extends SubsystemBase  {
       frontLeftMotor.configSupplyCurrentLimit(configTalonCurrent);
       backLeftMotor.configSupplyCurrentLimit(configTalonCurrent);
       backRightMotor.configSupplyCurrentLimit(configTalonCurrent);
+      
     }
 
 //drive with input  
@@ -53,13 +56,13 @@ public class driveTrain extends SubsystemBase  {
   //setpoint is multiplied by 1.35, as to have actual gains and loss through the loop instead of having them cancel out
       rightGroup.set(drivePID.calc(Math.sin(-right * Constants.multiplier) * -Math.sin(-right * Constants.multiplier) * 1.35,
       Math.sin(-right * Constants.multiplier) * -Math.sin(-right * Constants.multiplier))); 
-
     }else{
       leftGroup.set(drivePID.calc(Math.sin(left * Constants.multiplier)* Math.sin(left * Constants.multiplier) * 1.35,
       Math.sin(left * Constants.multiplier)* Math.sin(left * Constants.multiplier)));
       
       rightGroup.set(drivePID.calc(Math.sin(-right * Constants.multiplier) * Math.sin(-right * Constants.multiplier) * 1.35,
       Math.sin(-right * Constants.multiplier) * Math.sin(-right * Constants.multiplier)));
+      
     }
   }
 //Auto Drive

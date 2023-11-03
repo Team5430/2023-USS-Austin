@@ -14,12 +14,12 @@ double inputing;
         }
     }
     //WIP
-    public motorSafety(MotorControllerGroup leftGroup, MotorControllerGroup rightGroup, double input){
+    public motorSafety(MotorControllerGroup leftGroup, MotorControllerGroup rightGroup, double rightI, double leftI){
         if(Math.abs(leftGroup.get()) > 0.7){
-            leftGroup.set()
+            leftGroup.set(leftI);
         }
         if(Math.abs(rightGroup.get()) > 0.7){
-            rightGroup.set()
+            rightGroup.set(rightI);
         }
     }
     }

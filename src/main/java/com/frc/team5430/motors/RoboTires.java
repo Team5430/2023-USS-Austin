@@ -1,6 +1,8 @@
 package com.frc.team5430.motors;
 
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
+
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import edu.wpi.first.math.controller.PIDController;
 
@@ -15,53 +17,51 @@ private double totalInches;
 private double motorRotations;
 private double encoderTicks = 2048;
 
-    RoboTires(int CANid){
+    public RoboTires(int CANid){
         super(CANid);
     }
 
     //individually control motors for distance.
-private void driveInDistance(RoboTires motor, double feet){
+public void driveInDistance(RoboTires motor, double feet){
 
 totalInches = feet * inches;
 
 motorRotations = (totalInches/circumferenceInInches) * ratio;
 
-motor.set(ContorlMode.Position, motorRotations * encoderTicks);
+motor.set(ControlMode.Position, motorRotations * encoderTicks);
 
 }
 
-private void driveInDistance(RobotTires motor, double feet, PIDController pid){
+public void driveInDistance(WPI_TalonFX motor, double feet, PIDController pid){
 
    
 totalInches = feet * inches;
 
 motorRotations = (totalInches/circumferenceInInches) * ratio;
 
-pid.setpoint(motorRotations * encoderTicks);
+pid.setSetpoint(motorRotations * encoderTicks);
 
     while(motor.getSelectedSensorPosition() < motorRotations * encoderTicks){
-motor.set(ControlMode.PercentOutput, pid.calculate(motor.getSelectedSensorPosition));
+motor.set(ControlMode.PercentOutput, pid.calculate(motor.getSelectedSensorPosition()));
 
 }
     }
 
 
-private void setCircumference(double diameter){
+public void setCircumference(double diameter){
  circumferenceInInches = diameter * Math.PI;
  }
 
-private double getCircumference(){
-    return diameter;
+public double getCircumference(){
+    return circumferenceInInches;
 }
 
-private void setRatio(double Gratio){
+public void setRatio(double Gratio){
     ratio = Gratio;
 }
 
-private void getRatio(){
+public double getRatio(){
     return ratio;
 }
-
-
 
 }
